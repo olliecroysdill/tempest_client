@@ -9,6 +9,7 @@ function LandingPageNavigation(props) {
         <nav className={classes["landing-page-nav-container"]}>
             <Link to="/" style={{ textDecoration: "none" }}>
                 <img
+                    alt="company-logo"
                     src={navLogo}
                     style={{ width: "160px", marginBottom: "10px" }}
                 />

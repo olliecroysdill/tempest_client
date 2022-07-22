@@ -1,7 +1,7 @@
-import InputName from "./InputName";
+import InputName from "./InputFields/InputName";
 import { Stack, Box, Typography, Button } from "@mui/material";
-import InputEmail from "./InputEmail";
-import InputPassword from "./InputPassword";
+import InputEmail from "./InputFields/InputEmail";
+import InputPassword from "./InputFields/InputPassword";
 
 function SignUpForm() {
     return (

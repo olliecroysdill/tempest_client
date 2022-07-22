@@ -1,10 +1,11 @@
 import React from "react";
+import SignUpForm from "./SignUpForm/SignUpForm";
 
 function SignUpPage() {
     return (
         <div>
             <h1>Sign Up Page</h1>
-            <form>Sign Up Form Goes here</form>
+            <SignUpForm />
         </div>
     );
 }

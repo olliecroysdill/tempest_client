@@ -4,3 +4,9 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+@media only screen and (max-width: 1280px) {
+    .app-container {
+        width: 100%;
+    }
+}

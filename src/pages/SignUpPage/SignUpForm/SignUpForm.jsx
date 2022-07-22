@@ -1,3 +1,4 @@
+import React from "react";
 import InputName from "./InputFields/InputName";
 import { Stack, Box, Typography, Button } from "@mui/material";
 import InputEmail from "./InputFields/InputEmail";

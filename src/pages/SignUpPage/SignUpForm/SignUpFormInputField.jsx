@@ -14,8 +14,8 @@ function SignUpFormInputField(props) {
             onChange={props.onChange}
             onBlur={props.onBlur}
             value={props.data.value}
-            helperText={props.data.helperText}
             error={!props.data.isValid}
+            helperText={props.data.helperText}
         />
     );
 }

@@ -1,7 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Stack, Button } from "@mui/material";
 import SignUpFormInputField from "./SignUpFormInputField";
 import signUpFormReducer, { initialState } from "./signUpFormReducer";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -18,6 +19,18 @@ function SignUpForm() {
             });
         };
     }
+
+    //handle fetch for submitting form
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (globalFormState.validAndSubmitted) {
+            //console.log in place of fetch form data for now
+            console.log(globalFormState);
+            //await fetch, then will route to dashboard using useNavigate
+            //currently navigate to home as we dont have dashboard
+            navigate("/");
+        }
+    }, [globalFormState, navigate]);
 
     return (
         <Stack
@@ -62,7 +75,7 @@ function SignUpForm() {
             <Button
                 variant="contained"
                 sx={{ width: "200px" }}
-                onClick={getDispatchEventHandler("VALIDATE_ENTIRE_FORM")}
+                onClick={getDispatchEventHandler("SUBMIT_FORM")}
             >
                 Create Account
             </Button>

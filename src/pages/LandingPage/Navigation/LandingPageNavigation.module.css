@@ -1,10 +1,16 @@
-.landing-page-nav-container {
-    background: #fefefe;
-    height: 80px;
+.logo {
+    height: auto;
     width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 30px 0px 30px;
+    max-width: 130px;
+    max-height: 130px;
+}
+
+.leftside {
+    margin-right: 16;
+    margin-left: -12;
+}
+
+.rightside {
+    margin-left: auto;
+    margin-right: -12;
 }

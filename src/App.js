@@ -7,11 +7,13 @@ import SignUpPage from "./pages/SignUpPage";
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        <div>
+            <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/login" element={<LoginPage />} />
+            </Routes>
+        </div>
     );
 }
 

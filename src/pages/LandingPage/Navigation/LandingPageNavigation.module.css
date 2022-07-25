@@ -5,12 +5,25 @@
     max-height: 130px;
 }
 
-.leftside {
-    margin-right: 16;
-    margin-left: -12;
+.nav-container {
+    padding-left: calc(0.5 * (100% - 1280px));
+    padding-right: calc(0.5 * (100% - 1280px));
+    background: #fff !important;
+    box-shadow: none !important;
 }
 
-.rightside {
-    margin-left: auto;
-    margin-right: -12;
+@media only screen and (max-width: 1280px) {
+    .nav-container {
+        width: 100%;
+    }
+}
+
+.nav-items-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.no-text-decoration {
+    text-decoration: none;
 }

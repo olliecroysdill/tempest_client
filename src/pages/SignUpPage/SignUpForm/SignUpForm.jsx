@@ -1,8 +1,8 @@
-import React, { useReducer, useEffect } from "react";
-import { Stack, Button } from "@mui/material";
+import React, { useReducer, useState } from "react";
+import { Stack } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import SignUpFormInputField from "./SignUpFormInputField";
 import signUpFormReducer, { initialState } from "./signUpFormReducer";
-import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -20,17 +20,27 @@ function SignUpForm() {
         };
     }
 
-    //handle fetch for submitting form
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (globalFormState.validAndSubmitted) {
-            //console.log in place of fetch form data for now
-            console.log(globalFormState);
-            //await fetch, then will route to dashboard using useNavigate
-            //currently navigate to home as we dont have dashboard
-            navigate("/");
+    function getEntireFormValidity() {
+        let entireFormValidity = true;
+        for (const inputField of Object.values(globalFormState)) {
+            if (!inputField.isValid) entireFormValidity = false;
         }
-    }, [globalFormState, navigate]);
+        return entireFormValidity;
+    }
+
+    // const navigate = useNavigate();
+    const [fetchingData, setFetchingData] = useState(false);
+
+    function submitFormHandler(e) {
+        e.preventDefault();
+        getDispatchEventHandler("VALIDATE_ENTIRE_FORM")(e);
+        if (getEntireFormValidity()) {
+            setFetchingData(true);
+            //will fetch data here
+            console.log(globalFormState);
+            //navigate(/dashboard) - once we have dashboard page
+        }
+    }
 
     return (
         <Stack
@@ -45,6 +55,8 @@ function SignUpForm() {
                 <SignUpFormInputField
                     id="first-name"
                     label="First Name"
+                    type="text"
+                    disabled={fetchingData}
                     data={globalFormState.firstName}
                     onChange={getDispatchEventHandler("UPDATE_FIRST_NAME")}
                     onBlur={getDispatchEventHandler("VALIDATE_FIRST_NAME")}
@@ -52,6 +64,8 @@ function SignUpForm() {
                 <SignUpFormInputField
                     id="last-name"
                     label="Last Name"
+                    type="text"
+                    disabled={fetchingData}
                     data={globalFormState.lastName}
                     onChange={getDispatchEventHandler("UPDATE_LAST_NAME")}
                     onBlur={getDispatchEventHandler("VALIDATE_LAST_NAME")}
@@ -60,6 +74,8 @@ function SignUpForm() {
             <SignUpFormInputField
                 id="email"
                 label="Email"
+                type="text"
+                disabled={fetchingData}
                 data={globalFormState.email}
                 onChange={getDispatchEventHandler("UPDATE_EMAIL")}
                 onBlur={getDispatchEventHandler("VALIDATE_EMAIL")}
@@ -68,17 +84,19 @@ function SignUpForm() {
                 id="password"
                 label="Password"
                 type="password"
+                disabled={fetchingData}
                 data={globalFormState.password}
                 onChange={getDispatchEventHandler("UPDATE_PASSWORD")}
                 onBlur={getDispatchEventHandler("VALIDATE_PASSWORD")}
             />
-            <Button
+            <LoadingButton
                 variant="contained"
                 sx={{ width: "200px" }}
-                onClick={getDispatchEventHandler("SUBMIT_FORM")}
+                onClick={submitFormHandler}
+                loading={fetchingData}
             >
                 Create Account
-            </Button>
+            </LoadingButton>
         </Stack>
     );
 }

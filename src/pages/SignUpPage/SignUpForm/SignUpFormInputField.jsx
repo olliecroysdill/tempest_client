@@ -8,13 +8,14 @@ function SignUpFormInputField(props) {
             id={props.id}
             label={props.label}
             required={true}
+            disabled={props.disabled}
             variant="outlined"
             fullWidth={true}
             // stateUpdateProps
             onChange={props.onChange}
             onBlur={props.onBlur}
             value={props.data.value}
-            error={!props.data.isValid}
+            error={!props.data.isValid && props.data.shouldDisplayError}
             helperText={props.data.helperText}
         />
     );

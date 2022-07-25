@@ -7,7 +7,7 @@ import navbarlogo from "./../../../assets/navbarlogo.png";
 function LandingPageNavigation(props) {
     return (
         <AppBar position="static" style={{ background: "#FFFFFF" }}>
-            <Toolbar>
+            <Toolbar component="nav">
                 <div className={classes.leftside}>
                     <img src={navbarlogo} alt="logo" className={classes.logo} />
                 </div>

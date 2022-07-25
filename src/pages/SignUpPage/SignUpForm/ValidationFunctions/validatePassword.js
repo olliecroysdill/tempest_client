@@ -50,7 +50,7 @@ function validatePassword(password) {
     return {
         value: password,
         isValid: true,
-        helperText: "",
+        helperText: " ",
         shouldDisplayError: true
     };
 }

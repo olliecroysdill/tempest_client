@@ -17,7 +17,7 @@ function SignUpFormInputField(props) {
             value={props.data.value}
             error={!props.data.isValid && props.data.shouldDisplayError}
             helperText={
-                props.data.shouldDisplayError ? props.data.helperText : ""
+                props.data.shouldDisplayError ? props.data.helperText : " "
             }
         />
     );

@@ -28,7 +28,7 @@ function validateName(name) {
     return {
         value: name,
         isValid: true,
-        helperText: "",
+        helperText: " ",
         shouldDisplayError: true
     };
 }

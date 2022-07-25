@@ -18,7 +18,7 @@ function validateEmail(email) {
     return {
         value: email,
         isValid: true,
-        helperText: "",
+        helperText: " ",
         shouldDisplayError: true
     };
 }

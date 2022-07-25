@@ -44,7 +44,7 @@ function SignUpForm() {
 
     return (
         <Stack
-            spacing={3}
+            spacing={1}
             direction="column"
             component="form"
             alignItems="center"

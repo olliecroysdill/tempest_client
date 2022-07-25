@@ -48,8 +48,7 @@ function SignUpForm() {
             direction="column"
             component="form"
             alignItems="center"
-            width={400}
-            padding={3}
+            width={340}
         >
             <Stack spacing={2} direction="row">
                 <SignUpFormInputField

@@ -33,7 +33,7 @@ function SignUpForm() {
 
     function submitFormHandler(e) {
         e.preventDefault();
-        getDispatchEventHandler("VALIDATE_ENTIRE_FORM")(e);
+        getDispatchEventHandler("SHOW_ALL_FORM_ERRORS")(e);
         if (getEntireFormValidity()) {
             setFetchingData(true);
             //will fetch data here

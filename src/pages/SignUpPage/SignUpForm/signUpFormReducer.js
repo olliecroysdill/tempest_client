@@ -6,25 +6,25 @@ export const initialState = {
     firstName: {
         value: "",
         isValid: false,
-        helperText: "",
+        helperText: "Name is required",
         shouldDisplayError: false
     },
     lastName: {
         value: "",
         isValid: false,
-        helperText: "",
+        helperText: "Name is required",
         shouldDisplayError: false
     },
     email: {
         value: "",
         isValid: false,
-        helperText: "",
+        helperText: "Email is required",
         shouldDisplayError: false
     },
     password: {
         value: "",
         isValid: false,
-        helperText: "",
+        helperText: "Password is required",
         shouldDisplayError: false
     }
 };
@@ -71,12 +71,12 @@ function signUpFormReducer(formState, action) {
                 ...formState,
                 password: validatePassword(action.value)
             };
-        case "VALIDATE_ENTIRE_FORM":
+        case "SHOW_ALL_FORM_ERRORS":
             return {
-                firstName: validateName(formState.firstName.value),
-                lastName: validateName(formState.lastName.value),
-                email: validateEmail(formState.email.value),
-                password: validatePassword(formState.password.value)
+                firstName: { ...formState.firstName, shouldDisplayError: true },
+                lastName: { ...formState.lastName, shouldDisplayError: true },
+                email: { ...formState.email, shouldDisplayError: true },
+                password: { ...formState.password, shouldDisplayError: true }
             };
         default:
             return formState;

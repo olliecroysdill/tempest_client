@@ -4,9 +4,7 @@ import LandingPageNavigation from "./Navigation/LandingPageNavigation";
 function LandingPage() {
     return (
         <>
-            <header>
-                <LandingPageNavigation />
-            </header>
+            <LandingPageNavigation />
         </>
     );
 }

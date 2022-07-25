@@ -1,4 +1,3 @@
-import { ClassNames } from "@emotion/react";
 import React from "react";
 import MainNavigation from "./MainNavigation";
 import classes from "./Layout.module.css";

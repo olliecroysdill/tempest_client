@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 function SignUpFormInputField(props) {
     return (
         <TextField
-            type={props.type}
+            type="text"
             id={props.id}
             label={props.label}
             required={true}

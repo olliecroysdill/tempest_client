@@ -1,8 +1,9 @@
 import React, { useReducer, useState } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import SignUpFormInputField from "./SignUpFormInputField";
+import TextInputField from "./TextInputField";
 import signUpFormReducer, { initialState } from "./signUpFormReducer";
+import PasswordInputField from "./PasswordInputField";
 
 function SignUpForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -51,38 +52,34 @@ function SignUpForm() {
             width={340}
         >
             <Stack spacing={2} direction="row">
-                <SignUpFormInputField
+                <TextInputField
                     id="first-name"
                     label="First Name"
-                    type="text"
                     disabled={fetchingData}
                     data={globalFormState.firstName}
                     onChange={getDispatchEventHandler("UPDATE_FIRST_NAME")}
                     onBlur={getDispatchEventHandler("VALIDATE_FIRST_NAME")}
                 />
-                <SignUpFormInputField
+                <TextInputField
                     id="last-name"
                     label="Last Name"
-                    type="text"
                     disabled={fetchingData}
                     data={globalFormState.lastName}
                     onChange={getDispatchEventHandler("UPDATE_LAST_NAME")}
                     onBlur={getDispatchEventHandler("VALIDATE_LAST_NAME")}
                 />
             </Stack>
-            <SignUpFormInputField
+            <TextInputField
                 id="email"
                 label="Email"
-                type="text"
                 disabled={fetchingData}
                 data={globalFormState.email}
                 onChange={getDispatchEventHandler("UPDATE_EMAIL")}
                 onBlur={getDispatchEventHandler("VALIDATE_EMAIL")}
             />
-            <SignUpFormInputField
+            <PasswordInputField
                 id="password"
                 label="Password"
-                type="password"
                 disabled={fetchingData}
                 data={globalFormState.password}
                 onChange={getDispatchEventHandler("UPDATE_PASSWORD")}

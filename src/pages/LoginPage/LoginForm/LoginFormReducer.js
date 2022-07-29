@@ -13,7 +13,7 @@ export const initialState = {
     }
 };
 
-function signUpFormReducer(formState, action) {
+function loginFormReducer(formState, action) {
     switch (action.type) {
         case "UPDATE_EMAIL":
             return {
@@ -25,8 +25,10 @@ function signUpFormReducer(formState, action) {
                 ...formState,
                 email: {
                     value: action.value,
-                    isValid: action.value === "",
-                    helperText: "Email is required",
+                    isValid: !(action.value === ""),
+                    helperText: !(action.value === "")
+                        ? " "
+                        : "Email is required",
                     shouldDisplayError: true
                 }
             };
@@ -40,8 +42,10 @@ function signUpFormReducer(formState, action) {
                 ...formState,
                 password: {
                     value: action.value,
-                    isValid: action.value === "",
-                    helperText: "Email is required",
+                    isValid: !(action.value === ""),
+                    helperText: !(action.value === "")
+                        ? " "
+                        : "Password is required",
                     shouldDisplayError: true
                 }
             };
@@ -55,4 +59,4 @@ function signUpFormReducer(formState, action) {
     }
 }
 
-export default signUpFormReducer;
+export default loginFormReducer;

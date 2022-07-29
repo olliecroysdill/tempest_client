@@ -49,7 +49,6 @@ function SignUpForm() {
             direction="column"
             component="form"
             alignItems="center"
-            width={340}
         >
             <Stack spacing={2} direction="row">
                 <TextInputField

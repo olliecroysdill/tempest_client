@@ -5,7 +5,14 @@ import SignUpForm from "./SignUpForm/SignUpForm";
 
 function SignUpPage() {
     return (
-        <Stack direction="column" spacing={3} alignItems="center">
+        <Stack
+            direction="column"
+            spacing={3}
+            alignItems="center"
+            marginTop={10}
+            marginLeft={2}
+            marginRight={2}
+        >
             <Typography sx={{ paddingBottom: "40px" }} variant="h4">
                 Sign Up
             </Typography>

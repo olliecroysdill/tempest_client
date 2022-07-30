@@ -7,29 +7,29 @@ export const initialState = {
     departureAirport: {
         value: "",
         isValid: false,
-        helperText: "Departure airport is required",
-        shouldDisplayError: false
-    },
-    arrivalairport: {
-        value: "",
-        isValid: false,
-        helperText: "Destination airport is required",
-        shouldDisplayError: false
-    },
-    departureDate: {
-        value: "",
-        isValid: false,
-        helperText: "Departure date is required",
+        helperText: "Departure Date is required",
         shouldDisplayError: false
     },
     arrivalDate: {
         value: "",
         isValid: false,
-        helperText: "Arrival date is required",
+        helperText: "Field is required",
+        shouldDisplayError: false
+    },
+    departureDate: {
+        value: "",
+        isValid: false,
+        helperText: "Field is required",
+        shouldDisplayError: false
+    },
+    returnDate: {
+        value: "",
+        isValid: false,
+        helperText: "Field is required",
         shouldDisplayError: false
     }
 };
-
+``;
 function flightSearchFormReducer(formState, action) {
     switch (action.type) {
         case "UPDATE_DEPARTURE_AIRPORT":
@@ -49,15 +49,16 @@ function flightSearchFormReducer(formState, action) {
             return {
                 ...formState,
                 arrivalAirport: {
-                    ...formState.departureDate,
+                    ...formState.arrivalAirport,
                     value: action.value
                 }
             };
         case "VALIDATE_ARRIVAL_AIRPORT":
             return {
                 ...formState,
-                arrivalAirport: validateDate(action.value)
+                arrivalAirport: validateName(action.value)
             };
+
         case "UPDATE_DEPARTURE_DATE":
             return {
                 ...formState,
@@ -69,20 +70,17 @@ function flightSearchFormReducer(formState, action) {
         case "VALIDATE_DEPARTURE_DATE":
             return {
                 ...formState,
-                departureDate: validateDate(action.value)
+                departureDate: validateName(action.value)
             };
         case "UPDATE_RETURN_DATE":
             return {
                 ...formState,
-                returnDate: {
-                    ...formState.returnDate,
-                    value: action.value
-                }
+                returnDate: { ...formState.email, value: action.value }
             };
         case "VALIDATE_RETURN_DATE":
             return {
                 ...formState,
-                returnDate: validateDate(action.value)
+                returnDate: validateEmail(action.value)
             };
         case "SHOW_ALL_FORM_ERRORS":
             return {

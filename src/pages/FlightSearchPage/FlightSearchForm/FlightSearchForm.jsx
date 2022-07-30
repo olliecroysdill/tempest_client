@@ -58,7 +58,7 @@ function FlightSearchForm() {
                 id="departure-airport"
                 label="Departure Airport"
                 disabled={fetchingData}
-                data={globalFormState.email}
+                data={globalFormState.departureAirport}
                 onChange={getDispatchEventHandler("UPDATE_DEPARTURE_AIRPORT")}
                 onBlur={getDispatchEventHandler("VALIDATE_DEPARTURE_AIRPORT")}
             />
@@ -66,7 +66,7 @@ function FlightSearchForm() {
                 id="arrival-airport"
                 label="Arrival Airport"
                 disabled={fetchingData}
-                data={globalFormState.email}
+                data={globalFormState.arrivalAirport}
                 onChange={getDispatchEventHandler("UPDATE_ARRIVAL_AIRPORT")}
                 onBlur={getDispatchEventHandler("VALIDATE_ARRIVAL_AIRPORT")}
             />

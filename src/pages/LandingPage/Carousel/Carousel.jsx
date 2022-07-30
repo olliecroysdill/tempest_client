@@ -8,7 +8,8 @@ import westworldImage from "./../../../assets/Westworld.jpeg";
 function LandingPageCarousel() {
     return (
         <Carousel
-            sx={{ width: "90%" }}
+            navButtonsAlwaysVisible={true}
+            sx={{ width: "90%", overflow: "visible" }}
             autoPlay={false}
             animation="slide"
             duration="1000"
@@ -23,9 +24,9 @@ function LandingPageCarousel() {
             navButtonsWrapperProps={{
                 // Move the buttons to the bottom. Unsetting top here to override default style.
                 style: {
+                    left: "100%",
                     transform: "translateY(-50%)",
-                    top: 0,
-                    height: "100%"
+                    height: "calc(100vh - 60px)"
                 }
             }}
         >

@@ -1,14 +1,16 @@
 import { AppBar, Button, Stack, Toolbar } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import classes from "./LandingPageNavigation.module.css";
-import navbarlogo from "./../../../assets/navbarlogo.png";
+import classes from "./Navigation.module.css";
+import navbarlogo from "./../../assets/navbarlogo.png";
 
-function LandingPageNavigation(props) {
+function Navigation(props) {
     return (
         <AppBar className={classes["nav-container"]} position="static">
             <Toolbar component="nav" className={classes["nav-items-container"]}>
-                <img src={navbarlogo} alt="logo" className={classes.logo} />
+                <Link to="/">
+                    <img src={navbarlogo} alt="logo" className={classes.logo} />
+                </Link>
                 <Stack spacing={2} direction="row">
                     <Link
                         to="/sign-up"
@@ -29,4 +31,4 @@ function LandingPageNavigation(props) {
     );
 }
 
-export default LandingPageNavigation;
+export default Navigation;

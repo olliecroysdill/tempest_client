@@ -1,10 +1,10 @@
 import { Stack, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import LoginForm from "./LoginForm/LoginForm";
 import Navigation from "../../Components/Navigation/Navigation";
-import SignUpForm from "./SignUpForm/SignUpForm";
 
-function SignUpPage() {
+function LoginPage() {
     return (
         <>
             <Navigation />
@@ -12,26 +12,26 @@ function SignUpPage() {
                 <Stack
                     direction="column"
                     spacing={3}
-                    alignItems="center"
                     paddingTop={4}
                     paddingLeft={2}
                     paddingRight={2}
                     paddingBottom={4}
+                    alignItems="center"
                     style={{ maxWidth: "400px", width: "100%" }}
                 >
                     <Typography sx={{ paddingBottom: "40px" }} variant="h4">
-                        Sign Up
+                        Login
                     </Typography>
-                    <SignUpForm />
+                    <LoginForm />
                     <Typography variant="body2">
-                        Already have an account?{" "}
-                        <Link to="/login" style={{ textDecoration: "none" }}>
+                        Don't have an account?{" "}
+                        <Link to="/sign-up" style={{ textDecoration: "none" }}>
                             <Typography
                                 variant="body2"
                                 component="span"
                                 color="primary"
                             >
-                                Login
+                                Sign up
                             </Typography>
                         </Link>
                     </Typography>
@@ -41,4 +41,4 @@ function SignUpPage() {
     );
 }
 
-export default SignUpPage;
+export default LoginPage;

@@ -1,10 +1,10 @@
 import React from "react";
-import LandingPageNavigation from "./Navigation/LandingPageNavigation";
+import Navigation from "../../Components/Navigation/Navigation";
 
 function LandingPage() {
     return (
         <>
-            <LandingPageNavigation />
+            <Navigation />
         </>
     );
 }

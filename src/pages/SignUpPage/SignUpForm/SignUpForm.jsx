@@ -1,9 +1,9 @@
 import React, { useReducer, useState } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import TextInputField from "./TextInputField";
+import TextInputField from "../../../Components/FormInputs/TextInputField";
 import signUpFormReducer, { initialState } from "./signUpFormReducer";
-import PasswordInputField from "./PasswordInputField";
+import PasswordInputField from "../../../Components/FormInputs/PasswordInputField";
 
 function SignUpForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -49,6 +49,7 @@ function SignUpForm() {
             direction="column"
             component="form"
             alignItems="center"
+            alignSelf="stretch"
         >
             <Stack spacing={2} direction="row">
                 <TextInputField

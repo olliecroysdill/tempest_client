@@ -1,8 +1,8 @@
 import { LoadingButton } from "@mui/lab";
 import { Stack } from "@mui/material";
 import React, { useReducer, useState } from "react";
-import PasswordInputField from "../../SignUpPage/SignUpForm/PasswordInputField";
-import TextInputField from "../../SignUpPage/SignUpForm/TextInputField";
+import PasswordInputField from "../../../Components/FormInputs/PasswordInputField";
+import TextInputField from "../../../Components/FormInputs/TextInputField";
 import loginFormReducer from "./LoginFormReducer";
 import { initialState } from "./LoginFormReducer";
 
@@ -51,6 +51,7 @@ function LoginForm() {
             direction="column"
             component="form"
             alignItems="center"
+            alignSelf="stretch"
         >
             <TextInputField
                 id="email"
@@ -74,7 +75,7 @@ function LoginForm() {
                 onClick={submitFormHandler}
                 loading={fetchingData}
             >
-                Create Account
+                Login
             </LoadingButton>
         </Stack>
     );

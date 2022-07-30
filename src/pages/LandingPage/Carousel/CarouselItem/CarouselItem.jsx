@@ -2,7 +2,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import classes from "./CarouselItem.module.css";
 
-function FilmLocationCarouselItem(props) {
+function CarouselItem(props) {
     const [showInformation, setShowInformation] = useState(false);
 
     function filmClickedHandler() {
@@ -53,4 +53,4 @@ function FilmLocationCarouselItem(props) {
     );
 }
 
-export default FilmLocationCarouselItem;
+export default CarouselItem;

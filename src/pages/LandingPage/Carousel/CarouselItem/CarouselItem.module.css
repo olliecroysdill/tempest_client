@@ -1,0 +1,34 @@
+.carousel-item-container {
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    outline: none;
+    border: none;
+    position: absolute;
+}
+
+.background-image {
+    position: absolute;
+    height: 100%;
+}
+
+.information-overlay {
+    cursor: pointer;
+    color: #fff;
+    opacity: 0%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s all ease-in-out;
+    z-index: 100;
+}
+
+.information-overlay.visible {
+    opacity: 90%;
+}
+
+.text-container {
+    width: 100%;
+    padding: 0px 10px 0px 10px;
+}

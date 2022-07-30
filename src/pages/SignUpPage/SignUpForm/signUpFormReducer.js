@@ -61,6 +61,16 @@ function signUpFormReducer(formState, action) {
                 ...formState,
                 email: validateEmail(action.value)
             };
+        case "EMAIL_ALREADY_EXISTS":
+            return {
+                ...formState,
+                email: {
+                    ...formState.email,
+                    isValid: false,
+                    helperText: "Account exists with this email",
+                    shouldDisplayError: true
+                }
+            };
         case "UPDATE_PASSWORD":
             return {
                 ...formState,

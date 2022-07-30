@@ -54,6 +54,21 @@ function loginFormReducer(formState, action) {
                 email: { ...formState.email, shouldDisplayError: true },
                 password: { ...formState.password, shouldDisplayError: true }
             };
+        case "INVALID_CREDENTIALS":
+            return {
+                email: {
+                    ...formState.email,
+                    isValid: false,
+                    helperText: "Invalid Email / Password",
+                    shouldDisplayError: true
+                },
+                password: {
+                    value: "",
+                    isValid: false,
+                    helperText: "Invalid Email / Password",
+                    shouldDisplayError: true
+                }
+            };
         default:
             return formState;
     }

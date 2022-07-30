@@ -1,13 +1,14 @@
-import React, { useReducer, useState } from "react";
-import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import TextInputField from "../../../Components/FormInputs/TextInputField";
-import signUpFormReducer, { initialState } from "./signUpFormReducer";
+import { Stack } from "@mui/material";
+import React, { useReducer, useState } from "react";
 import PasswordInputField from "../../../Components/FormInputs/PasswordInputField";
+import TextInputField from "../../../Components/FormInputs/TextInputField";
+import loginFormReducer from "./LoginFormReducer";
+import { initialState } from "./LoginFormReducer";
 
-function SignUpForm() {
+function LoginForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
-        signUpFormReducer,
+        loginFormReducer,
         initialState
     );
 
@@ -35,6 +36,7 @@ function SignUpForm() {
     function submitFormHandler(e) {
         e.preventDefault();
         getDispatchEventHandler("SHOW_ALL_FORM_ERRORS")(e);
+        console.log(getEntireFormValidity());
         if (getEntireFormValidity()) {
             setFetchingData(true);
             //will fetch data here
@@ -51,24 +53,6 @@ function SignUpForm() {
             alignItems="center"
             alignSelf="stretch"
         >
-            <Stack spacing={2} direction="row">
-                <TextInputField
-                    id="first-name"
-                    label="First Name"
-                    disabled={fetchingData}
-                    data={globalFormState.firstName}
-                    onChange={getDispatchEventHandler("UPDATE_FIRST_NAME")}
-                    onBlur={getDispatchEventHandler("VALIDATE_FIRST_NAME")}
-                />
-                <TextInputField
-                    id="last-name"
-                    label="Last Name"
-                    disabled={fetchingData}
-                    data={globalFormState.lastName}
-                    onChange={getDispatchEventHandler("UPDATE_LAST_NAME")}
-                    onBlur={getDispatchEventHandler("VALIDATE_LAST_NAME")}
-                />
-            </Stack>
             <TextInputField
                 id="email"
                 label="Email"
@@ -91,10 +75,10 @@ function SignUpForm() {
                 onClick={submitFormHandler}
                 loading={fetchingData}
             >
-                Create Account
+                Login
             </LoadingButton>
         </Stack>
     );
 }
 
-export default SignUpForm;
+export default LoginForm;

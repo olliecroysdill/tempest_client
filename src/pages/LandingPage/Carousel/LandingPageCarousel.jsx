@@ -1,12 +1,12 @@
 import { Stack } from "@mui/material";
 import React from "react";
 import CarouselItem from "./CarouselItem/CarouselItem";
-import Carousel from "react-material-ui-carousel";
+import CarouselItemMobile from "./CarouselItem/CarouselItemMobile";
+import LandingPageCarouselContainer from "./LandingPageCarouselContainer";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import houseOfDragonImage from "./../../../assets/houseOfDragon.webp";
 import westworldImage from "./../../../assets/Westworld.jpeg";
 import spiderManImage from "./../../../assets/SpiderMan.jpeg";
-import CarouselItemMobile from "./CarouselItem/CarouselItemMobile";
 
 const filmDataArray = [
     {
@@ -50,30 +50,7 @@ function LandingPageCarousel() {
     );
     return (
         <Stack alignItems="center" width="100%" height="calc(100vh - 60px)">
-            <Carousel
-                navButtonsAlwaysVisible={true}
-                sx={{
-                    width: "100%",
-                    height: "calc(100vh - 60px)"
-                }}
-                autoPlay={false}
-                animation="slide"
-                duration="1000"
-                indicators={true}
-                indicatorContainerProps={{
-                    style: {
-                        position: "absolute",
-                        left: "50%",
-                        top: "92%",
-                        transform: "translateX(-50%)",
-                        zIndex: 300,
-                        backgroundColor: "rgba(255,255,255,0.7)",
-                        width: "auto",
-                        padding: "5px",
-                        borderRadius: "10px"
-                    }
-                }}
-            >
+            <LandingPageCarouselContainer>
                 {transformedFilmDataArray.map((filmArray, index) => (
                     <Stack
                         direction="row"
@@ -81,7 +58,7 @@ function LandingPageCarousel() {
                         key={`filmPage_${index}`}
                     >
                         {filmArray.map((filmData, index) => {
-                            if (numberOfFilmsPerScreen === 3)
+                            if (numberOfFilmsPerScreen >= 3)
                                 return (
                                     <CarouselItem
                                         title={filmData.title}
@@ -102,14 +79,16 @@ function LandingPageCarousel() {
                         })}
                     </Stack>
                 ))}
-            </Carousel>
+            </LandingPageCarouselContainer>
         </Stack>
     );
 }
 
 export default LandingPageCarousel;
 
+//----------------------------------
 //UTILITY FUNCTIONS USED IN COMPONENT
+//----------------------------------
 
 function getNumberOfFilmsPerScreen(pageDimesions) {
     if (pageDimesions.width > 900) return 3;

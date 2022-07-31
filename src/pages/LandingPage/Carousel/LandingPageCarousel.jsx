@@ -4,42 +4,7 @@ import CarouselItem from "./CarouselItem/CarouselItem";
 import CarouselItemMobile from "./CarouselItem/CarouselItemMobile";
 import LandingPageCarouselContainer from "./LandingPageCarouselContainer";
 import usePageDimensions from "../../../hooks/usePageDimensions";
-import houseOfDragonImage from "./../../../assets/houseOfDragon.webp";
-import westworldImage from "./../../../assets/Westworld.jpeg";
-import spiderManImage from "./../../../assets/SpiderMan.jpeg";
-
-const filmDataArray = [
-    {
-        title: "Spiderman No Way Home",
-        location: "London",
-        image: spiderManImage
-    },
-    {
-        title: "Westworld",
-        location: "New York",
-        image: westworldImage
-    },
-    {
-        title: "House of the Dragon",
-        location: "Paris",
-        image: houseOfDragonImage
-    },
-    {
-        title: "Spiderman No Way Home",
-        location: "London",
-        image: spiderManImage
-    },
-    {
-        title: "Westworld",
-        location: "New York",
-        image: westworldImage
-    },
-    {
-        title: "House of the Dragon",
-        location: "Paris",
-        image: houseOfDragonImage
-    }
-];
+import { filmDataArray } from "./CarouselFilmData";
 
 function LandingPageCarousel() {
     const pageDimensions = usePageDimensions();

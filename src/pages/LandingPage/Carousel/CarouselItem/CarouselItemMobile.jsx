@@ -6,15 +6,11 @@ function CarouselItem(props) {
     const [showInformation, setShowInformation] = useState(false);
 
     function filmClickedHandler() {
-        console.log("navigating to flights form");
-    }
-
-    function filmHoverHandler() {
-        setShowInformation(true);
-    }
-
-    function filmUnhoverHandler() {
-        setShowInformation(false);
+        if (showInformation) {
+            console.log("navigating to flights form");
+        } else {
+            setShowInformation(true);
+        }
     }
 
     return (
@@ -24,10 +20,6 @@ function CarouselItem(props) {
             className={classes["carousel-item-container"]}
             sx={{ padding: 0, borderRadius: "0px" }}
             onClick={filmClickedHandler}
-            onMouseOver={filmHoverHandler}
-            onFocus={filmHoverHandler}
-            onBlur={filmUnhoverHandler}
-            onMouseOut={filmUnhoverHandler}
         >
             <img
                 className={classes["background-image"]}

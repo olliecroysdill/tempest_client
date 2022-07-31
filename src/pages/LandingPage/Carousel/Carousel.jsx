@@ -13,7 +13,7 @@ function LandingPageCarousel() {
             <Carousel
                 navButtonsAlwaysVisible={true}
                 sx={{
-                    width: "90%",
+                    width: "100%",
                     height: "calc(100vh - 60px)"
                 }}
                 autoPlay={false}

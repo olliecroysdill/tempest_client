@@ -1,35 +1,33 @@
 import validateDate from "./ValidationFunctions/validateDate";
-import validateEmail from "./ValidationFunctions/validateEmail";
 import validateName from "./ValidationFunctions/validateName";
-import validatePassword from "./ValidationFunctions/validatePassword";
 
 export const initialState = {
     departureAirport: {
         value: "",
         isValid: false,
-        helperText: "Departure Date is required",
+        helperText: "Departure airport is required",
         shouldDisplayError: false
     },
-    arrivalDate: {
+    arrivalAirport: {
         value: "",
         isValid: false,
-        helperText: "Field is required",
+        helperText: "Arrival airport is required",
         shouldDisplayError: false
     },
     departureDate: {
         value: "",
         isValid: false,
-        helperText: "Field is required",
+        helperText: "Departure date is required",
         shouldDisplayError: false
     },
     returnDate: {
         value: "",
         isValid: false,
-        helperText: "Field is required",
+        helperText: "Arrival date is required",
         shouldDisplayError: false
     }
 };
-``;
+
 function flightSearchFormReducer(formState, action) {
     switch (action.type) {
         case "UPDATE_DEPARTURE_AIRPORT":
@@ -67,21 +65,21 @@ function flightSearchFormReducer(formState, action) {
                     value: action.value
                 }
             };
-        case "VALIDATE_DEPARTURE_DATE":
-            return {
-                ...formState,
-                departureDate: validateName(action.value)
-            };
+        // case "VALIDATE_DEPARTURE_DATE":
+        //     return {
+        //         ...formState,
+        //         departureDate: validateDate(action.value)
+        //     };
         case "UPDATE_RETURN_DATE":
             return {
                 ...formState,
-                returnDate: { ...formState.email, value: action.value }
+                returnDate: { ...formState.returnDate, value: action.value }
             };
-        case "VALIDATE_RETURN_DATE":
-            return {
-                ...formState,
-                returnDate: validateEmail(action.value)
-            };
+        // case "VALIDATE_RETURN_DATE":
+        //     return {
+        //         ...formState,
+        //         returnDate: validateDate(action.value)
+        //     };
         case "SHOW_ALL_FORM_ERRORS":
             return {
                 departureAirport: {

@@ -10,9 +10,9 @@ function FlightSearchPage() {
         <>
             <Navigation />
             {/* <div style={{ backgroundImage: "westworldImage" }}></div> */}
-            <div>
+            {/* <div>
                 <img src={westworldImage} width="25%" />
-            </div>
+            </div> */}
             <Stack alignItems="center" marginTop={4}>
                 <Stack
                     direction="column"
@@ -29,7 +29,7 @@ function FlightSearchPage() {
                     </Typography>
                     <FlightSearchForm />
                     <Typography variant="body2">
-                        Reach through the SKY
+                        Reach Through The Skies.
                         <Link
                             to="/flight-search"
                             style={{ textDecoration: "none" }}

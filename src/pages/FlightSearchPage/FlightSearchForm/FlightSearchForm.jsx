@@ -1,11 +1,12 @@
 import React, { useReducer, useState } from "react";
 import { Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { DatePicker } from "@mui/x-date-pickers";
+
 import TextInputField from "../../../Components/FormInputs/TextInputField";
 import flightSearchFormReducer, {
     initialState
 } from "./FlightSearchFormReducer";
-import PasswordInputField from "../../../Components/FormInputs/PasswordInputField";
 import ToggleSwitch from "../../../Components/Toggle/ToggleSwitch";
 
 function FlightSearchForm() {
@@ -72,22 +73,21 @@ function FlightSearchForm() {
             />
             <ToggleSwitch />
             <Stack spacing={2} direction="row">
-                <TextInputField
-                    id="departure-date"
+                <DatePicker
+                    // id="departure-date"
                     label="Departure Date"
                     disabled={fetchingData}
-                    data={globalFormState.departureDate}
+                    value={globalFormState.departureDate}
                     onChange={getDispatchEventHandler("UPDATE_DEPARTURE_DATE")}
-                    onBlur={getDispatchEventHandler("VALIDATE_DEPARTURE_DATE")}
+                    // onBlur={getDispatchEventHandler("VALIDATE_DEPARTURE_DATE")}
                 />
-
-                <TextInputField
-                    id="return-date"
+                <DatePicker
+                    // id="return-date"
                     label="Return Date"
                     disabled={fetchingData}
-                    data={globalFormState.returnDate}
+                    value={globalFormState.returnDate}
                     onChange={getDispatchEventHandler("UPDATE_RETURN_DATE")}
-                    onBlur={getDispatchEventHandler("VALIDATE_RETURN_DATE")}
+                    // onBlur={getDispatchEventHandler("VALIDATE_RETURN_DATE")}
                 />
             </Stack>
             <LoadingButton

@@ -1,13 +1,11 @@
 import React, { useReducer, useState } from "react";
-import { Stack } from "@mui/material";
+import { Autocomplete, Stack, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { DatePicker } from "@mui/x-date-pickers";
 
-import TextInputField from "../../../Components/FormInputs/TextInputField";
 import flightSearchFormReducer, {
     initialState
 } from "./FlightSearchFormReducer";
-import ToggleSwitch from "../../../Components/Toggle/ToggleSwitch";
 
 function FlightSearchForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -35,7 +33,6 @@ function FlightSearchForm() {
 
     // const navigate = useNavigate();
     const [fetchingData, setFetchingData] = useState(false);
-
     function submitFormHandler(e) {
         e.preventDefault();
         getDispatchEventHandler("SHOW_ALL_FORM_ERRORS")(e);
@@ -49,45 +46,77 @@ function FlightSearchForm() {
 
     return (
         <Stack
-            spacing={1}
+            spacing={4}
             direction="column"
             component="form"
             alignItems="center"
             alignSelf="stretch"
         >
-            <TextInputField
-                id="departure-airport"
-                label="Departure Airport"
-                disabled={fetchingData}
-                data={globalFormState.departureAirport}
-                onChange={getDispatchEventHandler("UPDATE_DEPARTURE_AIRPORT")}
-                onBlur={getDispatchEventHandler("VALIDATE_DEPARTURE_AIRPORT")}
+            <Autocomplete
+                value={globalFormState.departureAirport.value}
+                id="combo-box-demo"
+                options={["hello", "world", "option3"]}
+                fullWidth={true}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="From"
+                        required={true}
+                        placeholder="City or Airport"
+                        onChange={getDispatchEventHandler(
+                            "UPDATE_DEPARTURE_AIRPORT"
+                        )}
+                    />
+                )}
             />
-            <TextInputField
-                id="arrival-airport"
-                label="Arrival Airport"
-                disabled={fetchingData}
-                data={globalFormState.arrivalAirport}
-                onChange={getDispatchEventHandler("UPDATE_ARRIVAL_AIRPORT")}
-                onBlur={getDispatchEventHandler("VALIDATE_ARRIVAL_AIRPORT")}
+            <Autocomplete
+                value={globalFormState.arrivalAirport.value}
+                id="combo-box-demo"
+                options={["hello", "world", "option3"]}
+                fullWidth={true}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="To"
+                        required={true}
+                        placeholder="City or Airport"
+                        onChange={getDispatchEventHandler(
+                            "UPDATE_ARRIVAL_AIRPORT"
+                        )}
+                    />
+                )}
             />
-            <ToggleSwitch />
+
             <Stack spacing={2} direction="row">
                 <DatePicker
                     // id="departure-date"
+                    inputFormat="DD-MM-YYYY"
                     label="Departure Date"
                     disabled={fetchingData}
-                    value={globalFormState.departureDate}
-                    onChange={getDispatchEventHandler("UPDATE_DEPARTURE_DATE")}
-                    // onBlur={getDispatchEventHandler("VALIDATE_DEPARTURE_DATE")}
+                    value={globalFormState.departureDate.value}
+                    onChange={(value) => {
+                        // @ts-ignore
+                        dispatchGlobalFormState({
+                            type: "UPDATE_DEPARTURE_DATE",
+                            value: value
+                        });
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
                 />
                 <DatePicker
                     // id="return-date"
+                    inputFormat="DD-MM-YYYY"
                     label="Return Date"
                     disabled={fetchingData}
-                    value={globalFormState.returnDate}
-                    onChange={getDispatchEventHandler("UPDATE_RETURN_DATE")}
-                    // onBlur={getDispatchEventHandler("VALIDATE_RETURN_DATE")}
+                    value={globalFormState.returnDate.value}
+                    onChange={(value) => {
+                        // @ts-ignore
+                        dispatchGlobalFormState({
+                            type: "UPDATE_RETURN_DATE",
+                            value: value
+                        });
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
                 />
             </Stack>
             <LoadingButton

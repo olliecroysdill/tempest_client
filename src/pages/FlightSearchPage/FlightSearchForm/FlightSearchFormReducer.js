@@ -1,27 +1,27 @@
-import validateDate from "./ValidationFunctions/validateDate";
-import validateName from "./ValidationFunctions/validateName";
+import validateDepartureDate from "./ValidationFunctions/validateDepartureDate";
+import validateReturnDate from "./ValidationFunctions/validateReturnDate";
 
 export const initialState = {
     departureAirport: {
-        value: "",
+        value: null,
         isValid: false,
         helperText: "Departure airport is required",
         shouldDisplayError: false
     },
     arrivalAirport: {
-        value: "",
+        value: null,
         isValid: false,
         helperText: "Arrival airport is required",
         shouldDisplayError: false
     },
     departureDate: {
-        value: "",
+        value: null,
         isValid: false,
         helperText: "Departure date is required",
         shouldDisplayError: false
     },
     returnDate: {
-        value: "",
+        value: null,
         isValid: false,
         helperText: "Arrival date is required",
         shouldDisplayError: false
@@ -41,7 +41,14 @@ function flightSearchFormReducer(formState, action) {
         case "VALIDATE_DEPARTURE_AIRPORT":
             return {
                 ...formState,
-                departureAirport: validateName(action.value)
+                departureAirport: {
+                    value: action.value,
+                    isValid: !(action.value === null),
+                    helperText: !(action.value === null)
+                        ? " "
+                        : "Departure Airport is Required",
+                    shouldDisplayError: true
+                }
             };
         case "UPDATE_ARRIVAL_AIRPORT":
             return {
@@ -54,7 +61,14 @@ function flightSearchFormReducer(formState, action) {
         case "VALIDATE_ARRIVAL_AIRPORT":
             return {
                 ...formState,
-                arrivalAirport: validateName(action.value)
+                arrivalAirport: {
+                    value: action.value,
+                    isValid: !(action.value === null),
+                    helperText: !(action.value === null)
+                        ? " "
+                        : "Arrival Airport is Required",
+                    shouldDisplayError: true
+                }
             };
 
         case "UPDATE_DEPARTURE_DATE":
@@ -63,23 +77,27 @@ function flightSearchFormReducer(formState, action) {
                 departureDate: {
                     ...formState.departureDate,
                     value: action.value
+                },
+                returnDate: {
+                    ...formState.returnDate,
+                    value: null
                 }
             };
-        // case "VALIDATE_DEPARTURE_DATE":
-        //     return {
-        //         ...formState,
-        //         departureDate: validateDate(action.value)
-        //     };
+        case "VALIDATE_DEPARTURE_DATE":
+            return {
+                ...formState,
+                departureDate: validateDepartureDate(action.value)
+            };
         case "UPDATE_RETURN_DATE":
             return {
                 ...formState,
                 returnDate: { ...formState.returnDate, value: action.value }
             };
-        // case "VALIDATE_RETURN_DATE":
-        //     return {
-        //         ...formState,
-        //         returnDate: validateDate(action.value)
-        //     };
+        case "VALIDATE_RETURN_DATE":
+            return {
+                ...formState,
+                returnDate: validateReturnDate(action.value)
+            };
         case "SHOW_ALL_FORM_ERRORS":
             return {
                 departureAirport: {

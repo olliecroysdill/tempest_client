@@ -1,11 +1,18 @@
 import { Button, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./CarouselItem.module.css";
 
 function CarouselItem(props) {
     const [showInformation, setShowInformation] = useState(false);
 
+    const navigate = useNavigate();
     function filmClickedHandler() {
+        navigate("/flight-search", {
+            state: {
+                location: props.location
+            }
+        });
         console.log("navigating to flights form");
     }
 
@@ -45,7 +52,7 @@ function CarouselItem(props) {
                         {props.title?.toUpperCase()}
                     </Typography>
                     <Typography variant="h4" border="1px solid white">
-                        {props.location?.toUpperCase()}
+                        {props.location?.name?.toUpperCase()}
                     </Typography>
                 </Stack>
             </Stack>

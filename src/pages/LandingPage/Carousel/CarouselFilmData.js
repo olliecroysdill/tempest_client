@@ -5,7 +5,12 @@ import spiderManImage from "./../../../assets/SpiderMan.jpeg";
 export const filmDataArray = [
     {
         title: "Spiderman No Way Home",
-        location: "London",
+        location: {
+            name: "London",
+            country: "United Kingdom",
+            locationType: "CITY",
+            cityCode: "LON"
+        },
         image: spiderManImage
     },
     {

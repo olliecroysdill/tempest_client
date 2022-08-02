@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { Stack } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import flightSearchFormReducer, {
     initialState
@@ -7,6 +7,8 @@ import flightSearchFormReducer, {
 import AutocompleteFetchInput from "../../../Components/FormInputs/AutocompleteFetchInput";
 import DateRangePicker from "../../../Components/FormInputs/DateRangePicker";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function FlightSearchForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -45,11 +47,11 @@ function FlightSearchForm() {
         const arrivalAirportCode =
             globalFormState.arrivalAirport.value.locationType === "CITY"
                 ? globalFormState.arrivalAirport.value.cityCode
-                : globalFormState.arrivalAirport.value.airportCode;
+                : globalFormState.arrivalAirport.value.iataCode;
         const departureAirportCode =
             globalFormState.departureAirport.value.locationType === "CITY"
                 ? globalFormState.departureAirport.value.cityCode
-                : globalFormState.departureAirport.value.airportCode;
+                : globalFormState.departureAirport.value.iataCode;
 
         const [outwardFlightData, returnFlightData] = await Promise.all([
             axios.get("http://localhost:8080/flights/search-flights", {
@@ -90,6 +92,22 @@ function FlightSearchForm() {
         }
     }
 
+    const pageWideState = useLocation().state;
+    useEffect(() => {
+        if (pageWideState?.location) {
+            // @ts-ignore
+            dispatchGlobalFormState({
+                type: "UPDATE_ARRIVAL_AIRPORT",
+                value: pageWideState?.location
+            });
+            // @ts-ignore
+            dispatchGlobalFormState({
+                type: "VALIDATE_ARRIVAL_AIRPORT",
+                value: pageWideState?.location
+            });
+        }
+    }, []);
+
     return (
         <Stack
             spacing={1}
@@ -120,27 +138,42 @@ function FlightSearchForm() {
                 placeholder="City or Airport"
             />
 
-            <AutocompleteFetchInput
-                id="arrival-airport"
-                URL="http://localhost:8080/flights/search-locations"
-                disabled={fetchingData}
-                data={globalFormState.arrivalAirport}
-                onChange={(newValue) => {
-                    // @ts-ignore
-                    dispatchGlobalFormState({
-                        type: "UPDATE_ARRIVAL_AIRPORT",
-                        value: newValue
-                    });
-                    // @ts-ignore
-                    dispatchGlobalFormState({
-                        type: "VALIDATE_ARRIVAL_AIRPORT",
-                        value: newValue
-                    });
-                }}
-                label="To"
-                required={true}
-                placeholder="City or Airport"
-            />
+            {pageWideState?.location ? (
+                <TextField
+                    disabled={fetchingData}
+                    fullWidth
+                    value={`${pageWideState?.location.name}, ${pageWideState?.location.country} (Any)`}
+                    label="To"
+                    id="arrival-airport"
+                    InputProps={{
+                        readOnly: true
+                    }}
+                    helperText=" "
+                />
+            ) : (
+                <AutocompleteFetchInput
+                    id="arrival-airport"
+                    URL="http://localhost:8080/flights/search-locations"
+                    disabled={fetchingData}
+                    data={globalFormState.arrivalAirport}
+                    onChange={(newValue) => {
+                        // @ts-ignore
+                        dispatchGlobalFormState({
+                            type: "UPDATE_ARRIVAL_AIRPORT",
+                            value: newValue
+                        });
+                        // @ts-ignore
+                        dispatchGlobalFormState({
+                            type: "VALIDATE_ARRIVAL_AIRPORT",
+                            value: newValue
+                        });
+                    }}
+                    label="To"
+                    required={true}
+                    placeholder="City or Airport"
+                />
+            )}
+
             <DateRangePicker
                 disabled={fetchingData}
                 data={[

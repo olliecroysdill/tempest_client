@@ -13,7 +13,6 @@ function CarouselItem(props) {
                 location: props.location
             }
         });
-        console.log("navigating to flights form");
     }
 
     function filmHoverHandler() {

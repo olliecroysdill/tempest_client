@@ -15,27 +15,52 @@ export const filmDataArray = [
     },
     {
         title: "Westworld",
-        location: "New York",
+        location: {
+            name: "London",
+            country: "United Kingdom",
+            locationType: "CITY",
+            cityCode: "LON"
+        },
         image: westworldImage
     },
     {
         title: "House of the Dragon",
-        location: "Paris",
+        location: {
+            name: "London",
+            country: "United Kingdom",
+            locationType: "CITY",
+            cityCode: "LON"
+        },
         image: houseOfDragonImage
     },
     {
         title: "Spiderman No Way Home",
-        location: "London",
+        location: {
+            name: "London",
+            country: "United Kingdom",
+            locationType: "CITY",
+            cityCode: "LON"
+        },
         image: spiderManImage
     },
     {
         title: "Westworld",
-        location: "New York",
+        location: {
+            name: "London",
+            country: "United Kingdom",
+            locationType: "CITY",
+            cityCode: "LON"
+        },
         image: westworldImage
     },
     {
         title: "House of the Dragon",
-        location: "Paris",
+        location: {
+            name: "London",
+            country: "United Kingdom",
+            locationType: "CITY",
+            cityCode: "LON"
+        },
         image: houseOfDragonImage
     }
 ];

@@ -106,7 +106,7 @@ function FlightSearchForm() {
                 value: pageWideState?.location
             });
         }
-    }, []);
+    }, [pageWideState]);
 
     return (
         <Stack

@@ -4,6 +4,8 @@ import { LoadingButton } from "@mui/lab";
 import TextInputField from "../../../Components/FormInputs/TextInputField";
 import signUpFormReducer, { initialState } from "./signUpFormReducer";
 import PasswordInputField from "../../../Components/FormInputs/PasswordInputField";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -31,15 +33,39 @@ function SignUpForm() {
 
     // const navigate = useNavigate();
     const [fetchingData, setFetchingData] = useState(false);
-
-    function submitFormHandler(e) {
+    const navigate = useNavigate();
+    async function submitFormHandler(e) {
         e.preventDefault();
         getDispatchEventHandler("SHOW_ALL_FORM_ERRORS")(e);
         if (getEntireFormValidity()) {
             setFetchingData(true);
-            //will fetch data here
-            console.log(globalFormState);
-            //navigate(/dashboard) - once we have dashboard page
+            try {
+                await axios.post("http://localhost:8080/register", {
+                    email: globalFormState.email.value,
+                    password: globalFormState.password.value,
+                    first_name: globalFormState.firstName.value,
+                    last_name: globalFormState.lastName.value
+                });
+                const loginResponse = await axios.post(
+                    "http://localhost:8080/login",
+                    {
+                        username: globalFormState.email.value,
+                        password: globalFormState.password.value
+                    }
+                );
+                console.log(loginResponse);
+                sessionStorage.setItem(
+                    "getYourWay_session_token",
+                    loginResponse.headers.authorization
+                );
+                navigate("/dashboard");
+            } catch (err) {
+                console.log(err);
+                if (err.response.status === 409) {
+                    getDispatchEventHandler("EMAIL_ALREADY_EXISTS")(e);
+                    setFetchingData(false);
+                }
+            }
         }
     }
 

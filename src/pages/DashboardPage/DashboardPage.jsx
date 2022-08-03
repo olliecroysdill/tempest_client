@@ -1,11 +1,19 @@
-import { Box, Button, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { Button, Stack, Tab, Tabs, Typography } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "../../Components/Navigation/Navigation";
 import usePageDimensions from "../../hooks/usePageDimensions";
 import JourneyCard from "./JourneyCard/JourneyCard";
 
 function DashboardPage() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!sessionStorage.session_token) {
+            navigate("/login");
+        }
+    }, []);
+
     const pageDimensions = usePageDimensions();
     const [showUpcoming, setShowUpcoming] = React.useState(true);
 

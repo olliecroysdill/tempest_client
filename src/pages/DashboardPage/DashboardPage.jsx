@@ -7,6 +7,7 @@ import Navigation from "../../Components/Navigation/Navigation";
 import usePageDimensions from "../../hooks/usePageDimensions";
 import JourneyCard from "./JourneyCard/JourneyCard";
 import axios from "axios";
+import moment from "moment";
 
 function DashboardPage() {
     const navigate = useNavigate();
@@ -86,12 +87,31 @@ function DashboardPage() {
                         Add a new journey
                     </Button>
                 )}
-                {journeys.map((journey, index) => (
-                    <JourneyCard
-                        key={`JourneyItem-${index}`}
-                        journey={journey}
-                    />
-                ))}
+                {showUpcoming
+                    ? journeys
+                          .filter((journey) =>
+                              moment(journey.returnFlight.arrivalDate).isAfter(
+                                  moment()
+                              )
+                          )
+                          .map((journey, index) => (
+                              <JourneyCard
+                                  key={`JourneyItem-${index}`}
+                                  journey={journey}
+                              />
+                          ))
+                    : journeys
+                          .filter((journey) =>
+                              moment(journey.returnFlight.arrivalDate).isBefore(
+                                  moment()
+                              )
+                          )
+                          .map((journey, index) => (
+                              <JourneyCard
+                                  key={`JourneyItem-${index}`}
+                                  journey={journey}
+                              />
+                          ))}
             </Stack>
         </Stack>
     );

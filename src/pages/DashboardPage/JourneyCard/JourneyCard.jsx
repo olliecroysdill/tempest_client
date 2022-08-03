@@ -1,4 +1,5 @@
 import { Button, Stack } from "@mui/material";
+import moment from "moment";
 import React from "react";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import JourneyCardHeader from "./JourneyCardHeader";
@@ -16,9 +17,13 @@ function JourneyCard(props) {
                 sx={{ borderRadius: "13px 13px 13px 13px", cursor: "pointer" }}
             >
                 <JourneyCardHeader
-                    title={props.title}
-                    departureDate={props.departureDate}
-                    returnDate={props.returnDate}
+                    title={props.journey.journeyName}
+                    departureDate={moment(
+                        props.journey.outboundFlight.departureDate
+                    ).format("DD/MM/YYYY")}
+                    returnDate={moment(
+                        props.journey.returnFlight.arrivalDate
+                    ).format("DD/MM/YYYY")}
                 />
                 <Stack
                     padding={2}
@@ -29,7 +34,7 @@ function JourneyCard(props) {
                 >
                     <JourneyCardInfo
                         title="Outbound:"
-                        data={props.outboundFlight}
+                        data={props.journey.outboundFlight}
                     />
                     {pageDimensions.width > 800 && (
                         <Stack
@@ -40,7 +45,7 @@ function JourneyCard(props) {
                     )}
                     <JourneyCardInfo
                         title="Return:"
-                        data={props.returnFlight}
+                        data={props.journey.returnFlight}
                     />
                 </Stack>
             </Stack>

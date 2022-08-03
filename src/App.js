@@ -8,6 +8,7 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import JourneyPage from "./pages/JourneyPage/JourneyPage";
 
 const defaultTheme = createTheme();
 const theme = createTheme({
@@ -34,6 +35,7 @@ function App() {
                             element={<FlightSearchPage />}
                         />
                         <Route path="/dashboard" element={<DashboardPage />} />
+                        <Route path="/journey" element={<JourneyPage />} />
                     </Routes>
                 </div>
             </LocalizationProvider>

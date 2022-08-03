@@ -55,7 +55,7 @@ function SignUpForm() {
                 );
                 console.log(loginResponse);
                 sessionStorage.setItem(
-                    "session_token",
+                    "getYourWay_session_token",
                     loginResponse.headers.authorization
                 );
                 navigate("/dashboard");

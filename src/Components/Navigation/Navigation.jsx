@@ -1,10 +1,15 @@
 import { AppBar, Button, Stack, Toolbar } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import classes from "./Navigation.module.css";
 import navbarlogo from "./../../assets/navbarlogo.png";
 
 function Navigation(props) {
+    const navigate = useNavigate();
+    function handleLogout() {
+        sessionStorage.removeItem("getYourWay_session_token");
+        navigate("/");
+    }
     return (
         <AppBar className={classes["nav-container"]} position="static">
             <Toolbar component="nav" className={classes["nav-items-container"]}>
@@ -12,7 +17,7 @@ function Navigation(props) {
                     <img src={navbarlogo} alt="logo" className={classes.logo} />
                 </Link>
 
-                {!sessionStorage.session_token ? (
+                {!sessionStorage.getYourWay_session_token ? (
                     <Stack spacing={2} direction="row">
                         <Link
                             to="/flight-search"
@@ -49,6 +54,13 @@ function Navigation(props) {
                                 Search flights
                             </Button>
                         </Link>
+                        <Button
+                            onClick={handleLogout}
+                            variant="outlined"
+                            size="small"
+                        >
+                            Logout
+                        </Button>
                         <Link
                             to="/dashboard"
                             className={classes["no-text-decoration"]}

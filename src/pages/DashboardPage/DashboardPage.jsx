@@ -9,7 +9,7 @@ import JourneyCard from "./JourneyCard/JourneyCard";
 function DashboardPage() {
     const navigate = useNavigate();
     useEffect(() => {
-        if (!sessionStorage.session_token) {
+        if (!sessionStorage.getYourWay_session_token) {
             navigate("/login");
         }
     }, []);

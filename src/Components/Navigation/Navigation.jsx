@@ -11,28 +11,54 @@ function Navigation(props) {
                 <Link to="/">
                     <img src={navbarlogo} alt="logo" className={classes.logo} />
                 </Link>
-                
-                <Stack spacing={2} direction="row">
-                <Link
-                        to="/flight-search"
-                        className={classes["no-text-decoration"]}>
-                        <Button variant="outlined" size="small">
-                            Get flights
-                        </Button>
-                    </Link>
-                    <Link
-                        to="/sign-up"
-                        className={classes["no-text-decoration"]}>
-                        <Button variant="outlined" size="small">
-                            Sign Up
-                        </Button>
-                    </Link>
-                    <Link to="/login" className={classes["no-text-decoration"]}>
-                        <Button variant="contained" size="small">
-                            Log in
-                        </Button>
-                    </Link>
-                </Stack>
+
+                {!sessionStorage.session_token ? (
+                    <Stack spacing={2} direction="row">
+                        <Link
+                            to="/flight-search"
+                            className={classes["no-text-decoration"]}
+                        >
+                            <Button variant="outlined" size="small">
+                                Search flights
+                            </Button>
+                        </Link>
+                        <Link
+                            to="/sign-up"
+                            className={classes["no-text-decoration"]}
+                        >
+                            <Button variant="outlined" size="small">
+                                Sign Up
+                            </Button>
+                        </Link>
+                        <Link
+                            to="/login"
+                            className={classes["no-text-decoration"]}
+                        >
+                            <Button variant="contained" size="small">
+                                Log in
+                            </Button>
+                        </Link>
+                    </Stack>
+                ) : (
+                    <Stack spacing={2} direction="row">
+                        <Link
+                            to="/flight-search"
+                            className={classes["no-text-decoration"]}
+                        >
+                            <Button variant="outlined" size="small">
+                                Search flights
+                            </Button>
+                        </Link>
+                        <Link
+                            to="/dashboard"
+                            className={classes["no-text-decoration"]}
+                        >
+                            <Button variant="outlined" size="small">
+                                My Dashboard
+                            </Button>
+                        </Link>
+                    </Stack>
+                )}
             </Toolbar>
         </AppBar>
     );

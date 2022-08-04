@@ -87,7 +87,6 @@ function FlightSearchForm() {
             //fetch params:
             const flightResponse = await getFlightData();
             console.log(flightResponse);
-            console.log(globalFormState);
             //navigate(/dashboard) - once we have dashboard page
         }
     }

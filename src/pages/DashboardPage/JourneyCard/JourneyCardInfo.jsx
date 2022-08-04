@@ -1,5 +1,6 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
+import moment from "moment";
 
 function JourneyCardInfo(props) {
     return (
@@ -18,17 +19,20 @@ function JourneyCardInfo(props) {
                     color="#666"
                     sx={{ textTransform: "none !important" }}
                 >
-                    DEP: {props.data.departureAirportName} &nbsp;
+                    DEP: {props.data.departureAirport.name} &nbsp;
                     <Typography
                         component="span"
                         variant="subtitle2"
                         color="primary.main"
                         sx={{ textTransform: "none !important" }}
                     >
-                        ({props.data.departureAirportCode})
+                        ({props.data.departureAirport.iataCode})
                     </Typography>
                 </Typography>
-                <Typography color="#666">{props.data.departureTime}</Typography>
+                <Typography color="#666">
+                    {moment(props.data.departureDate).hours()}:
+                    {moment(props.data.departureDate).minutes()}
+                </Typography>
             </Stack>
             <Stack width="100%" direction="row" justifyContent="space-between">
                 <Typography
@@ -36,17 +40,20 @@ function JourneyCardInfo(props) {
                     color="#666"
                     sx={{ textTransform: "none !important" }}
                 >
-                    ARR: {props.data.arrivalAirportName} &nbsp;
+                    ARR: {props.data.arrivalAirport.name} &nbsp;
                     <Typography
                         component="span"
                         variant="subtitle2"
                         color="primary.main"
                         sx={{ textTransform: "none !important" }}
                     >
-                        ({props.data.arrivalAirportCode})
+                        ({props.data.arrivalAirport.iataCode})
                     </Typography>
                 </Typography>
-                <Typography color="#666">{props.data.arrivalTime}</Typography>
+                <Typography color="#666">
+                    {moment(props.data.arrivalDate).hours()}:
+                    {moment(props.data.arrivalDate).minutes()}
+                </Typography>
             </Stack>
         </Stack>
     );

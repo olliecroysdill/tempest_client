@@ -20,14 +20,11 @@ function convertToHours(duration) {
 function FlightDurationContent(props) {
     const classes = useStyles();
     return (
-        <Stack direction="column" alignItems="center">
+        <Stack direction="column" alignItems="center" width="50px">
             <Typography fontSize={11}>
                 {convertToHours(props.duration)}
             </Typography>
-            <FlightIcon
-                transform="rotate(180deg)"
-                className={classes.rotateIcon}
-            />
+            <FlightIcon className={classes.rotateIcon} />
         </Stack>
     );
 }

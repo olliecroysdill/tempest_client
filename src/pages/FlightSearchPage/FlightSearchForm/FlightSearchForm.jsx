@@ -7,7 +7,7 @@ import flightSearchFormReducer, {
 import AutocompleteFetchInput from "../../../Components/FormInputs/AutocompleteFetchInput";
 import DateRangePicker from "../../../Components/FormInputs/DateRangePicker";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function FlightSearchForm() {
@@ -76,18 +76,30 @@ function FlightSearchForm() {
         return [outwardFlightData.data, returnFlightData.data];
     }
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [fetchingData, setFetchingData] = useState(false);
     async function submitFormHandler(e) {
         e.preventDefault();
         getDispatchEventHandler("SHOW_ALL_FORM_ERRORS")(e);
         if (getEntireFormValidity()) {
             setFetchingData(true);
-            //will fetch data here
-            //fetch params:
             const flightResponse = await getFlightData();
             console.log(flightResponse);
-            //navigate(/dashboard) - once we have dashboard page
+            if (sessionStorage.getYourWay_session_token) {
+                navigate("/flights-selector", {
+                    state: {
+                        outboundFlights: flightResponse[0],
+                        returnFlights: flightResponse[1]
+                    }
+                });
+            } else {
+                navigate("/login", {
+                    state: {
+                        outboundFlights: flightResponse[0],
+                        returnFlights: flightResponse[1]
+                    }
+                });
+            }
         }
     }
 

@@ -19,6 +19,11 @@ const theme = createTheme({
             main: "#05AFE2",
             contrastText: "#fff"
         }
+    },
+    typography: {
+        h4: {
+            fontWeight: 600
+        }
     }
 });
 

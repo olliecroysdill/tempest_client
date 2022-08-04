@@ -57,12 +57,13 @@ function LoginForm() {
                 if (location.state?.outboundFlights) {
                     navigate("/flights-selector", {
                         state: {
-                            outboundFlight: location.state?.outboundFlights,
-                            returnFlight: location.state?.returnFlights
+                            outboundFlights: location.state?.outboundFlights,
+                            returnFlights: location.state?.returnFlights
                         }
                     });
+                } else {
+                    navigate("/dashboard");
                 }
-                navigate("/dashboard");
             } catch (err) {
                 if (err.response.status === 403) {
                     getDispatchEventHandler("INVALID_CREDENTIALS")(e);

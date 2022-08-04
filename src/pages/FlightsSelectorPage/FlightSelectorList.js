@@ -1,14 +1,24 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import FlightSelectorCard from "./FlightSelectorCard/FlightSelectorCard";
+import FlightSelectorNameModal from "./FlightSelectorNameModal";
 
 function FlightSelectorList() {
     const location = useLocation();
-    const outgoingFlightsList = location.state?.outboundFlights;
-    const returnFlightsList = location.state?.returnFlights;
+
+    const [outgoingFlightsArray, setOutgoingFlightsArray] = useState([]);
+    const [returnFlightsArray, setReturnFlightsArray] = useState([]);
+    useEffect(() => {
+        setOutgoingFlightsArray(location.state.outboundFlights);
+        setReturnFlightsArray(location.state.returnFlights);
+        console.log(
+            location.state.outboundFlights,
+            location.state.returnFlights
+        );
+    }, []);
 
     const [outgoingFlightsSelected, setOutgoingFlightsSelected] =
         useState(null);
@@ -45,6 +55,12 @@ function FlightSelectorList() {
         ));
     }
 
+    const [nameModalOpen, setNameModalOpen] = useState(false);
+
+    function openModalHandler() {
+        setNameModalOpen(true);
+    }
+
     // SUBMIT/LOADING STATE AND FUNCTION
     const [fetchingData, setFetchingData] = useState(false);
     function submitHandler() {
@@ -54,79 +70,128 @@ function FlightSelectorList() {
 
     return (
         <>
-            <Grid container spacing={2} justifyContent="center">
-                <Grid
-                    item
-                    xs={3}
-                    style={{
-                        textAlign: "center"
-                    }}
-                >
-                    <Typography variant="h6" fontWeight="bold" color="#1cc4fc">
-                        Outgoing Flights
-                    </Typography>
-                    <Box
-                        style={{
-                            textAlign: "center",
-                            maxHeight: "73vh",
-                            overflow: "auto"
-                        }}
+            {!(outgoingFlightsArray.length === 0) &&
+            !(returnFlightsArray.length === 0) ? (
+                <>
+                    <Grid container spacing={3} justifyContent="center">
+                        <Grid
+                            item
+                            xs={3}
+                            style={{
+                                textAlign: "center"
+                            }}
+                        >
+                            <Stack padding={2} borderBottom="1px solid #ddd">
+                                <Typography
+                                    variant="h6"
+                                    fontWeight="bold"
+                                    color="#1cc4fc"
+                                >
+                                    Outgoing Flights
+                                </Typography>
+                            </Stack>
+                            <Box
+                                style={{
+                                    textAlign: "center",
+                                    maxHeight: "65vh",
+                                    overflow: "auto"
+                                }}
+                            >
+                                <Stack
+                                    alignItems="center"
+                                    width="100%"
+                                    spacing={2}
+                                    padding={2}
+                                >
+                                    {outgoingFlightsArray.length > 0
+                                        ? generateOutgoingList(
+                                              outgoingFlightsArray
+                                          )
+                                        : "No flights found"}
+                                </Stack>
+                            </Box>
+                        </Grid>
+                        <Grid
+                            item
+                            xs={3}
+                            style={{
+                                textAlign: "center"
+                            }}
+                        >
+                            <Stack padding={2} borderBottom="1px solid #ddd">
+                                <Typography
+                                    variant="h6"
+                                    fontWeight="bold"
+                                    color="#1cc4fc"
+                                >
+                                    Return Flights
+                                </Typography>
+                            </Stack>
+                            <Box
+                                style={{
+                                    textAlign: "center",
+                                    maxHeight: "65vh",
+                                    overflow: "auto"
+                                }}
+                            >
+                                <Stack
+                                    alignItems="center"
+                                    width="100%"
+                                    spacing={2}
+                                    padding={2}
+                                >
+                                    {returnFlightsArray.length > 0
+                                        ? generateReturnList(returnFlightsArray)
+                                        : "No flights found"}
+                                </Stack>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                    <Stack
+                        alignItems="center"
+                        justifyContent="center"
+                        paddingTop={7}
                     >
-                        <Stack alignItems="center" width="100%">
-                            {outgoingFlightsList.length > 0
-                                ? generateOutgoingList(outgoingFlightsList)
-                                : "No flights found"}
-                        </Stack>
-                    </Box>
-                </Grid>
-                <Grid
-                    item
-                    xs={3}
+                        <Button
+                            onClick={openModalHandler}
+                            disabled={
+                                !outgoingFlightsSelected ||
+                                !returnFlightsSelected
+                            }
+                        >
+                            Add Your Journey
+                        </Button>
+                    </Stack>
+                    <FlightSelectorNameModal
+                        fetchingData={fetchingData}
+                        submitHandler={submitHandler}
+                        open={nameModalOpen}
+                        onClose={() => {
+                            setNameModalOpen(false);
+                        }}
+                    />
+                </>
+            ) : (
+                <Stack
                     justifyContent="center"
-                    style={{
-                        textAlign: "center",
-                        maxHeight: "73vh",
-                        overflow: "auto"
-                    }}
+                    alignItems="center"
+                    height="80vh"
+                    spacing={4}
                 >
-                    <Typography variant="h6" fontWeight="bold" color="#1cc4fc">
-                        Return Flights
-                    </Typography>
-                    <Box
-                        style={{
-                            textAlign: "center",
-                            maxHeight: "75vh",
-                            overflow: "auto"
-                        }}
+                    <Typography variant="h4">No Flights to Show</Typography>
+                    <Link
+                        style={{ textDecoration: "none" }}
+                        to="/flight-search"
                     >
-                        <Stack alignItems="center" width="100%">
-                            {returnFlightsList.length > 0
-                                ? generateReturnList(returnFlightsList)
-                                : "No flights found"}
-                        </Stack>
-                    </Box>
-                </Grid>
-            </Grid>
-            <Stack alignItems="center" justifyContent="center" paddingTop={7}>
-                <LoadingButton
-                    variant="contained"
-                    disabled={
-                        !outgoingFlightsSelected || !returnFlightsSelected
-                    }
-                    onClick={submitHandler}
-                    loading={fetchingData}
-                >
-                    Add Your Journey
-                </LoadingButton>
-            </Stack>
-            {/* <Grid display="flex" justifyContent="center">
-                <FlightSelectStepper
-                    stepOne={selectedOutgoingFlight}
-                    stepTwo={selectedReturnFlight}
-                />
-            </Grid> */}
+                        <Button variant="contained">Search Again</Button>
+                    </Link>
+                </Stack>
+            )}
         </>
     );
 }
 
 export default FlightSelectorList;
+
+{
+}

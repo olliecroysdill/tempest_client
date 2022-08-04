@@ -1,10 +1,10 @@
-import { LoadingButton } from "@mui/lab";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import FlightSelectorCard from "./FlightSelectorCard/FlightSelectorCard";
 import FlightSelectorNameModal from "./FlightSelectorNameModal";
+import axios from "axios";
 
 function FlightSelectorList() {
     const location = useLocation();
@@ -14,11 +14,7 @@ function FlightSelectorList() {
     useEffect(() => {
         setOutgoingFlightsArray(location.state.outboundFlights);
         setReturnFlightsArray(location.state.returnFlights);
-        console.log(
-            location.state.outboundFlights,
-            location.state.returnFlights
-        );
-    }, []);
+    }, [location]);
 
     const [outgoingFlightsSelected, setOutgoingFlightsSelected] =
         useState(null);
@@ -61,11 +57,27 @@ function FlightSelectorList() {
         setNameModalOpen(true);
     }
 
+    const [journeyName, setJourneyName] = useState("");
+
     // SUBMIT/LOADING STATE AND FUNCTION
     const [fetchingData, setFetchingData] = useState(false);
-    function submitHandler() {
-        console.log("asdasdas");
+    const navigate = useNavigate();
+    async function submitHandler() {
         setFetchingData(true);
+        await axios.post(
+            "http://localhost:8080/journeys/savejourney",
+            {
+                journeyName: journeyName,
+                outboundFlight: outgoingFlightsSelected,
+                returnFlight: returnFlightsSelected
+            },
+            {
+                headers: {
+                    Authorization: sessionStorage.getYourWay_session_token
+                }
+            }
+        );
+        navigate("/dashboard");
     }
 
     return (
@@ -153,6 +165,7 @@ function FlightSelectorList() {
                         paddingTop={7}
                     >
                         <Button
+                            variant="contained"
                             onClick={openModalHandler}
                             disabled={
                                 !outgoingFlightsSelected ||
@@ -168,6 +181,10 @@ function FlightSelectorList() {
                         open={nameModalOpen}
                         onClose={() => {
                             setNameModalOpen(false);
+                        }}
+                        journeyName={journeyName}
+                        onChangeJourneyName={(e) => {
+                            setJourneyName(e.target.value);
                         }}
                     />
                 </>
@@ -192,6 +209,3 @@ function FlightSelectorList() {
 }
 
 export default FlightSelectorList;
-
-{
-}

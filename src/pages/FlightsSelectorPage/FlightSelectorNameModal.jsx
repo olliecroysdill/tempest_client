@@ -1,14 +1,6 @@
 import { LoadingButton } from "@mui/lab";
-import {
-    Box,
-    Button,
-    Modal,
-    Stack,
-    TextField,
-    Typography
-} from "@mui/material";
+import { Modal, Stack, TextField } from "@mui/material";
 import React from "react";
-import TextInputField from "../../Components/FormInputs/TextInputField";
 
 const style = {
     position: "absolute",
@@ -31,16 +23,11 @@ function FlightSelectorNameModal(props) {
                 aria-describedby="modal-modal-description"
             >
                 <Stack sx={style} spacing={3}>
-                    {/* <Typography
-                        id="modal-modal-title"
-                        variant="h5"
-                        component="h2"
-                    >
-                        Enter a name for your Journey
-                    </Typography> */}
                     <TextField
                         label=""
                         placeholder="Enter a name for your Journey"
+                        value={props.journeyName}
+                        onChange={props.onChangeJourneyName}
                     />
                     <LoadingButton
                         variant="contained"

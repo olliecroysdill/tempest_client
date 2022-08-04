@@ -9,11 +9,11 @@ pipeline {
                 sh 'npm install --force'
             }
         }
-        stage('Test application') {
-            steps {
-                sh 'npm test'
-            }
-        }
+        // stage('Test application') {
+        //     steps {
+        //         sh 'npm test'
+        //     }
+        // }
         stage('Build application') {
             steps {
                 sh 'npm run build'

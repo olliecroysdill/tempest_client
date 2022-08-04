@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navigation from "../../Components/Navigation/Navigation";
 import CO2Info from "./co2/CO2Info";
+import WeatherInfo from "./Weather/WeatherInfo";
 
 function JourneyPage() {
     const location = useLocation();
@@ -14,6 +15,7 @@ function JourneyPage() {
                 <Typography variant="h4">
                     {location.state.journey.journeyName}
                 </Typography>
+                <WeatherInfo />
                 <CO2Info />
             </Stack>
         </Stack>

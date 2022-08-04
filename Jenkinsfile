@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-        CI = true
-    }
+    // environment {
+    //     CI = true
+    // }
     stages {
         stage('Install dependencies') {
             steps {

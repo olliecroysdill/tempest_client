@@ -41,7 +41,7 @@ function FlightSelectorCard(props) {
                             {props.flight.airlineCode?.toUpperCase()}
                         </Typography>
                         <TimeAirportContent
-                            airportCode={props.flight.departureAirportCode}
+                            airportCode={props.flight.departureAirport.iataCode}
                             date={props.flight.departureDate}
                             alignLeft={false}
                         />
@@ -50,7 +50,7 @@ function FlightSelectorCard(props) {
                         />
                         <TimeAirportContent
                             align={props.flight.align}
-                            airportCode={props.flight.arrivalAirportCode}
+                            airportCode={props.flight.arrivalAirport.iataCode}
                             date={props.flight.arrivalDate}
                             alignLeft={true}
                         />

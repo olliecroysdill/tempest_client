@@ -6,7 +6,7 @@ import TextInputField from "../../../Components/FormInputs/TextInputField";
 import loginFormReducer from "./LoginFormReducer";
 import { initialState } from "./LoginFormReducer";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function LoginForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -36,6 +36,7 @@ function LoginForm() {
     const [fetchingData, setFetchingData] = useState(false);
 
     const navigate = useNavigate();
+    const location = useLocation();
     async function submitFormHandler(e) {
         e.preventDefault();
         getDispatchEventHandler("SHOW_ALL_FORM_ERRORS")(e);
@@ -53,6 +54,14 @@ function LoginForm() {
                     "getYourWay_session_token",
                     loginResponse.headers.authorization
                 );
+                if (location.state?.outboundFlights) {
+                    navigate("/flights-selector", {
+                        state: {
+                            outboundFlight: location.state?.outboundFlights,
+                            returnFlight: location.state?.returnFlights
+                        }
+                    });
+                }
                 navigate("/dashboard");
             } catch (err) {
                 if (err.response.status === 403) {

@@ -23,7 +23,7 @@ function CO2InfoHeader() {
                 paddingBottom={1}
             >
                 <Typography variant="h5" color="#666">
-                    Environmental Impact
+                    ENVIRONMENTAL IMPACT
                 </Typography>
             </Stack>
         </Stack>

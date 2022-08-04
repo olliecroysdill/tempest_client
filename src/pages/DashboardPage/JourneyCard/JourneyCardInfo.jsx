@@ -19,14 +19,14 @@ function JourneyCardInfo(props) {
                     color="#666"
                     sx={{ textTransform: "none !important" }}
                 >
-                    DEP: {props.data.departureCity} &nbsp;
+                    DEP: {props.data.departureAirport.name} &nbsp;
                     <Typography
                         component="span"
                         variant="subtitle2"
                         color="primary.main"
                         sx={{ textTransform: "none !important" }}
                     >
-                        ({props.data.departureAirportCode})
+                        ({props.data.departureAirport.iataCode})
                     </Typography>
                 </Typography>
                 <Typography color="#666">
@@ -40,14 +40,14 @@ function JourneyCardInfo(props) {
                     color="#666"
                     sx={{ textTransform: "none !important" }}
                 >
-                    ARR: {props.data.arrivalCity} &nbsp;
+                    ARR: {props.data.arrivalAirport.name} &nbsp;
                     <Typography
                         component="span"
                         variant="subtitle2"
                         color="primary.main"
                         sx={{ textTransform: "none !important" }}
                     >
-                        ({props.data.arrivalAirportCode})
+                        ({props.data.arrivalAirport.iataCode})
                     </Typography>
                 </Typography>
                 <Typography color="#666">

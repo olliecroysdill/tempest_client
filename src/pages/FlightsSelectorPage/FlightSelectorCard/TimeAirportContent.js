@@ -24,10 +24,36 @@ function TimeAirportContent(props) {
                 textAlign={props.alignLeft ? "left" : "right"}
                 fontWeight="light"
             >
-                {props.airportCode}
+                {props.airportName} &nbsp;{" "}
+                <Typography
+                    component="span"
+                    variant="subtitle2"
+                    color="primary.main"
+                    sx={{ textTransform: "none !important" }}
+                >
+                    ({props.airportCode})
+                </Typography>
             </Typography>
         </Stack>
     );
 }
 
 export default TimeAirportContent;
+
+{
+    /* <Typography
+                    variant="subtitle2"
+                    color="#666"
+                    sx={{ textTransform: "none !important" }}
+                >
+                    DEP: {props.data.departureAirport.name} &nbsp;
+                    <Typography
+                        component="span"
+                        variant="subtitle2"
+                        color="primary.main"
+                        sx={{ textTransform: "none !important" }}
+                    >
+                        ({props.data.departureAirport.iataCode})
+                    </Typography>
+                </Typography> */
+}

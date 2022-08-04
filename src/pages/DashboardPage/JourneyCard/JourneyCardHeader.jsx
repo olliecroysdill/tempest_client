@@ -30,7 +30,7 @@ function JourneyCardHeader(props) {
                 </Typography>
 
                 <Typography paddingTop={0.5} variant="subtitle1" color="#666">
-                    {`(${props.departureDate} -${props.returnDate})`}
+                    {props.departureDate}&nbsp;-&nbsp;{props.returnDate}
                 </Typography>
             </Stack>
         </Stack>

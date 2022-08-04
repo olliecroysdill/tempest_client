@@ -3,6 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import moment from "moment";
 
 function JourneyCardInfo(props) {
+    console.log(props.data);
     return (
         <Stack
             padding={1}
@@ -30,8 +31,7 @@ function JourneyCardInfo(props) {
                     </Typography>
                 </Typography>
                 <Typography color="#666">
-                    {moment(props.data.departureDate).hours()}:
-                    {moment(props.data.departureDate).minutes()}
+                    {moment(props.data.departureDate).format("HH:mm")}
                 </Typography>
             </Stack>
             <Stack width="100%" direction="row" justifyContent="space-between">
@@ -51,8 +51,7 @@ function JourneyCardInfo(props) {
                     </Typography>
                 </Typography>
                 <Typography color="#666">
-                    {moment(props.data.arrivalDate).hours()}:
-                    {moment(props.data.arrivalDate).minutes()}
+                    {moment(props.data.arrivalDate).format("HH:mm")}
                 </Typography>
             </Stack>
         </Stack>

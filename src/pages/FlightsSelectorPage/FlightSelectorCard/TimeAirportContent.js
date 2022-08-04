@@ -3,10 +3,9 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import moment from "moment";
 
-function TimeAirportContent(props, { style }) {
+function TimeAirportContent(props) {
     function convertToTime(date) {
         const formattedDate = moment(date).format("HH:mm");
-        console.log(formattedDate);
         return formattedDate;
     }
 

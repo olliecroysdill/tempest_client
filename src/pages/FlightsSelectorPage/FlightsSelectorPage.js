@@ -1,5 +1,4 @@
-import { Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import Navigation from "../../Components/Navigation/Navigation";
 import FlightSelectorList from "./FlightSelectorList";
 

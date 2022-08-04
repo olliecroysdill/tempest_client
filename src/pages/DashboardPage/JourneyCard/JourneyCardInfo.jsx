@@ -3,7 +3,6 @@ import { Stack, Typography } from "@mui/material";
 import moment from "moment";
 
 function JourneyCardInfo(props) {
-    console.log(props.data);
     return (
         <Stack
             padding={1}

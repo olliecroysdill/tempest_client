@@ -26,7 +26,6 @@ function DashboardPage() {
                     }
                 }
             );
-            console.log(response.data);
             setJourneys(response.data);
         }
         if (sessionStorage.getYourWay_session_token) {

@@ -19,6 +19,7 @@ function FlightSelectorCard(props) {
                     ? "2px solid #1cc4fc"
                     : "1px solid #ddd",
                 backgroundColor: props.isDisabled ? "#eee" : "white",
+                opacity: props.isDisabled ? "30%" : "100%",
                 boxShadow: "none",
                 margin: props.isSelected ? "8px" : "9px"
             }}

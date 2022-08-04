@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import FlightSelectorCard from "./FlightSelectorCard/FlightSelectorCard";
 import FlightSelectorNameModal from "./FlightSelectorNameModal";
 import axios from "axios";
+import server from "../../axiosConfig";
 
 function FlightSelectorList() {
     const location = useLocation();
@@ -64,8 +65,8 @@ function FlightSelectorList() {
     const navigate = useNavigate();
     async function submitHandler() {
         setFetchingData(true);
-        await axios.post(
-            "http://localhost:8080/journeys/savejourney",
+        await server.post(
+            "/journeys/savejourney",
             {
                 journeyName: journeyName,
                 outboundFlight: outgoingFlightsSelected,
@@ -85,10 +86,15 @@ function FlightSelectorList() {
             {!(outgoingFlightsArray.length === 0) &&
             !(returnFlightsArray.length === 0) ? (
                 <>
-                    <Grid container spacing={3} justifyContent="center">
+                    <Stack
+                        direction="row"
+                        spacing={3}
+                        justifyContent="center"
+                        width="100%"
+                        alignItems="center"
+                    >
                         <Grid
                             item
-                            xs={3}
                             style={{
                                 textAlign: "center"
                             }}
@@ -125,7 +131,6 @@ function FlightSelectorList() {
                         </Grid>
                         <Grid
                             item
-                            xs={3}
                             style={{
                                 textAlign: "center"
                             }}
@@ -158,7 +163,7 @@ function FlightSelectorList() {
                                 </Stack>
                             </Box>
                         </Grid>
-                    </Grid>
+                    </Stack>
                     <Stack
                         alignItems="center"
                         justifyContent="center"

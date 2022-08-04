@@ -6,6 +6,7 @@ import signUpFormReducer, { initialState } from "./signUpFormReducer";
 import PasswordInputField from "../../../Components/FormInputs/PasswordInputField";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import server from "../../../axiosConfig";
 
 function SignUpForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -40,19 +41,16 @@ function SignUpForm() {
         if (getEntireFormValidity()) {
             setFetchingData(true);
             try {
-                await axios.post("http://localhost:8080/register", {
+                await server.post("/register", {
                     email: globalFormState.email.value,
                     password: globalFormState.password.value,
                     first_name: globalFormState.firstName.value,
                     last_name: globalFormState.lastName.value
                 });
-                const loginResponse = await axios.post(
-                    "http://localhost:8080/login",
-                    {
-                        username: globalFormState.email.value,
-                        password: globalFormState.password.value
-                    }
-                );
+                const loginResponse = await server.post("/login", {
+                    username: globalFormState.email.value,
+                    password: globalFormState.password.value
+                });
                 console.log(loginResponse);
                 sessionStorage.setItem(
                     "getYourWay_session_token",

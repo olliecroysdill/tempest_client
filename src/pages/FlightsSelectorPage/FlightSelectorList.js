@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import FlightSelectorCard from "./FlightSelectorCard/FlightSelectorCard";
 import FlightSelectorNameModal from "./FlightSelectorNameModal";
 import axios from "axios";
+import server from "../../axiosConfig";
 
 function FlightSelectorList() {
     const location = useLocation();
@@ -64,8 +65,8 @@ function FlightSelectorList() {
     const navigate = useNavigate();
     async function submitHandler() {
         setFetchingData(true);
-        await axios.post(
-            "http://localhost:8080/journeys/savejourney",
+        await server.post(
+            "/journeys/savejourney",
             {
                 journeyName: journeyName,
                 outboundFlight: outgoingFlightsSelected,

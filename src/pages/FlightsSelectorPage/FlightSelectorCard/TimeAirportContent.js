@@ -10,7 +10,7 @@ function TimeAirportContent(props) {
     }
 
     return (
-        <Stack direction="column">
+        <Stack direction="column" width={140}>
             <Typography
                 variant="h5"
                 textAlign={props.alignLeft ? "left" : "right"}
@@ -25,14 +25,14 @@ function TimeAirportContent(props) {
                 fontWeight="light"
             >
                 {props.airportName} &nbsp;{" "}
-                <Typography
-                    component="span"
-                    variant="subtitle2"
-                    color="primary.main"
-                    sx={{ textTransform: "none !important" }}
-                >
-                    ({props.airportCode})
-                </Typography>
+            </Typography>
+            <Typography
+                variant="subtitle2"
+                color="primary.main"
+                sx={{ textTransform: "none !important" }}
+                textAlign={props.alignLeft ? "left" : "right"}
+            >
+                ({props.airportCode})
             </Typography>
         </Stack>
     );

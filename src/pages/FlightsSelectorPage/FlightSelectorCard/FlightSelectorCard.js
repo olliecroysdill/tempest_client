@@ -33,22 +33,24 @@ function FlightSelectorCard(props) {
             <CardActionArea>
                 <CardContent>
                     <Stack
-                        spacing={2}
+                        spacing={1}
+                        paddingX={2}
                         direction="row"
                         alignItems="center"
                         justifyContent="space-between"
                     >
-                        <Stack>
+                        <Stack width={80} maxWidth={80}>
                             <Typography
                                 variant="h6"
                                 sx={{
-                                    fontWeight: "bold",
-                                    width: 80,
-                                    maxWidth: 80
+                                    fontWeight: "bold"
                                 }}
                             >
                                 {props.flight.airlineCode?.toUpperCase()}
                                 {props.flight.flightNumber}
+                            </Typography>
+                            <Typography variant="subtitle2" fontStyle="oblique">
+                                £{props.flight.price}
                             </Typography>
                         </Stack>
                         <Stack
@@ -57,6 +59,8 @@ function FlightSelectorCard(props) {
                             height="80px"
                         ></Stack>
                         <Stack
+                            width={300}
+                            maxWidth={300}
                             direction="row"
                             spacing={2}
                             alignItems="center"

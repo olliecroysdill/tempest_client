@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import React from "react";
 
-function CO2InfoContent() {
+function CO2InfoContent(props) {
     return (
         <Stack
             padding={1}
@@ -10,7 +10,7 @@ function CO2InfoContent() {
             width="100%"
         >
             <Typography variant="subtitle1" color="#000">
-                OUTBOUND
+                {props.title}
             </Typography>
             <Stack width="100%" direction="row" justifyContent="space-between">
                 <Typography
@@ -18,9 +18,11 @@ function CO2InfoContent() {
                     color="#666"
                     sx={{ textTransform: "none !important" }}
                 >
-                    500kg CO2e
+                    {props.co2Footprint}kg CO2e
                 </Typography>
-                <Typography color="#666">CO2 price</Typography>
+                <Typography color="#666">
+                    £{props.co2OffsetAmount?.toFixed(2)}
+                </Typography>
             </Stack>
         </Stack>
     );

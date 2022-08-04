@@ -9,6 +9,7 @@ import DateRangePicker from "../../../Components/FormInputs/DateRangePicker";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import server, { baseLink } from "../../../axiosConfig";
 
 function FlightSearchForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -54,7 +55,7 @@ function FlightSearchForm() {
                 : globalFormState.departureAirport.value.iataCode;
 
         const [outwardFlightData, returnFlightData] = await Promise.all([
-            axios.get("http://localhost:8080/flights/search-flights", {
+            server.get("/flights/search-flights", {
                 params: {
                     flightDate: outwardFlightDate,
                     departureLocationType: departureLocationType,
@@ -63,7 +64,7 @@ function FlightSearchForm() {
                     arrivalAirportCode: arrivalAirportCode
                 }
             }),
-            axios.get("http://localhost:8080/flights/search-flights", {
+            server.get("/flights/search-flights", {
                 params: {
                     flightDate: returnFlightDate,
                     departureLocationType: arrivalLocationType,
@@ -129,7 +130,7 @@ function FlightSearchForm() {
         >
             <AutocompleteFetchInput
                 id="departure-airport"
-                URL="http://localhost:8080/flights/search-locations"
+                URL={baseLink + "/flights/search-locations"}
                 disabled={fetchingData}
                 data={globalFormState.departureAirport}
                 onChange={(newValue) => {
@@ -164,7 +165,7 @@ function FlightSearchForm() {
             ) : (
                 <AutocompleteFetchInput
                     id="arrival-airport"
-                    URL="http://localhost:8080/flights/search-locations"
+                    URL={baseLink + "/flights/search-locations"}
                     disabled={fetchingData}
                     data={globalFormState.arrivalAirport}
                     onChange={(newValue) => {

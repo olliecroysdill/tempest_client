@@ -7,6 +7,7 @@ import loginFormReducer from "./LoginFormReducer";
 import { initialState } from "./LoginFormReducer";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import server from "../../../axiosConfig";
 
 function LoginForm() {
     const [globalFormState, dispatchGlobalFormState] = useReducer(
@@ -43,13 +44,10 @@ function LoginForm() {
         if (getEntireFormValidity()) {
             setFetchingData(true);
             try {
-                const loginResponse = await axios.post(
-                    "http://localhost:8080/login",
-                    {
-                        username: globalFormState.email.value,
-                        password: globalFormState.password.value
-                    }
-                );
+                const loginResponse = await server.post("login", {
+                    username: globalFormState.email.value,
+                    password: globalFormState.password.value
+                });
                 sessionStorage.setItem(
                     "getYourWay_session_token",
                     loginResponse.headers.authorization

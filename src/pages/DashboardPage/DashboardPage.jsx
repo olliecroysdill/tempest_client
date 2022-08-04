@@ -7,6 +7,7 @@ import usePageDimensions from "../../hooks/usePageDimensions";
 import JourneyCard from "./JourneyCard/JourneyCard";
 import axios from "axios";
 import moment from "moment";
+import server from "../../axiosConfig";
 
 function DashboardPage() {
     const navigate = useNavigate();
@@ -18,14 +19,11 @@ function DashboardPage() {
 
     useEffect(() => {
         async function getSavedFlights() {
-            const response = await axios.get(
-                "http://localhost:8080/journeys/getjourneys",
-                {
-                    headers: {
-                        Authorization: sessionStorage.getYourWay_session_token
-                    }
+            const response = await server.get("/journeys/getjourneys", {
+                headers: {
+                    Authorization: sessionStorage.getYourWay_session_token
                 }
-            );
+            });
             console.log(response.data);
             setJourneys(response.data);
         }

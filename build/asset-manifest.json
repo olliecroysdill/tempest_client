@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.6a08d717.css",
-    "main.js": "/static/js/main.aa708e4a.js",
-    "static/media/LandingPageV1.png": "/static/media/LandingPageV1.d7f51b94ed73a31ffc41.png",
+    "main.js": "/static/js/main.7afe9853.js",
+    "static/media/LandingImage.png": "/static/media/LandingImage.51de4b0176088a48d57d.png",
     "static/media/LOTR.jpg": "/static/media/LOTR.5398d172ed618e2ee907.jpg",
     "static/media/indy.jpeg": "/static/media/indy.f50eca10d867f3a4d8d6.jpeg",
     "static/media/SpiderMan.jpeg": "/static/media/SpiderMan.8167802bb1c6c984057a.jpeg",
@@ -20,10 +20,10 @@
     "static/media/roboto-greek-ext-400-normal.woff2": "/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2",
     "index.html": "/index.html",
     "main.6a08d717.css.map": "/static/css/main.6a08d717.css.map",
-    "main.aa708e4a.js.map": "/static/js/main.aa708e4a.js.map"
+    "main.7afe9853.js.map": "/static/js/main.7afe9853.js.map"
   },
   "entrypoints": [
     "static/css/main.6a08d717.css",
-    "static/js/main.aa708e4a.js"
+    "static/js/main.7afe9853.js"
   ]
 }

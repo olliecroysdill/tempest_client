@@ -7,14 +7,10 @@ import usePageDimensions from "../../hooks/usePageDimensions";
 import JourneyCard from "./JourneyCard/JourneyCard";
 import axios from "axios";
 import moment from "moment";
+import useRestrictToLoginOnly from "../../hooks/useRestrictToLoginOnly";
 
 function DashboardPage() {
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!sessionStorage.getYourWay_session_token) {
-            navigate("/login");
-        }
-    }, []);
+    useRestrictToLoginOnly();
 
     useEffect(() => {
         async function getSavedFlights() {

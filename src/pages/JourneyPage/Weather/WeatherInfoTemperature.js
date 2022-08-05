@@ -10,7 +10,7 @@ function WeatherInfoContent(props) {
             direction="column"
             alignItems="center"
             width="100%"
-            height="17.5vh"
+            height="13vh"
         >
             <Box pb={1}>
                 <Typography variant="subtitle1" color="#000">

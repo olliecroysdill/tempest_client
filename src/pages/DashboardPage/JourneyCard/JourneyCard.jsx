@@ -4,17 +4,33 @@ import React from "react";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import JourneyCardHeader from "./JourneyCardHeader";
 import JourneyCardInfo from "./JourneyCardInfo";
+import { useNavigate } from "react-router-dom";
 
 function JourneyCard(props) {
     const pageDimensions = usePageDimensions();
 
+    const navigate = useNavigate();
+    function handleNavigateToJourneyPage() {
+        navigate("/journey", {
+            state: {
+                journey: props.journey
+            }
+        });
+    }
+
     return (
-        <Button sx={{ padding: 0, borderRadius: "13px" }}>
+        <Button
+            sx={{ padding: 0, borderRadius: "13px" }}
+            onClick={handleNavigateToJourneyPage}
+        >
             <Stack
                 width="100%"
                 maxWidth="1280px"
                 border="1px solid #ddd"
-                sx={{ borderRadius: "13px 13px 13px 13px", cursor: "pointer" }}
+                sx={{
+                    borderRadius: "13px 13px 13px 13px",
+                    cursor: "pointer"
+                }}
             >
                 <JourneyCardHeader
                     title={props.journey.journeyName}

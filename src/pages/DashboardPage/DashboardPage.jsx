@@ -1,22 +1,16 @@
 import { Button, Stack, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navigation from "../../Components/Navigation/Navigation";
 import usePageDimensions from "../../hooks/usePageDimensions";
 import JourneyCard from "./JourneyCard/JourneyCard";
-import axios from "axios";
 import moment from "moment";
+import useRestrictToLoginOnly from "../../hooks/useRestrictToLoginOnly";
 import server from "../../axiosConfig";
 
 function DashboardPage() {
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!sessionStorage.getYourWay_session_token) {
-            navigate("/login");
-        }
-    }, []);
-
+    useRestrictToLoginOnly();
     useEffect(() => {
         async function getSavedFlights() {
             const response = await server.get("/journeys/getjourneys", {
@@ -24,14 +18,12 @@ function DashboardPage() {
                     Authorization: sessionStorage.getYourWay_session_token
                 }
             });
-            console.log(response.data);
             setJourneys(response.data);
         }
         if (sessionStorage.getYourWay_session_token) {
             getSavedFlights();
         }
     }, []);
-
     const pageDimensions = usePageDimensions();
     const [showUpcoming, setShowUpcoming] = React.useState(true);
 

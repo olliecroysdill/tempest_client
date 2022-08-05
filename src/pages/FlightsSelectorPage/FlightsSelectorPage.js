@@ -7,14 +7,14 @@ function FlightsSelectorPage() {
     const location = useLocation();
     const navigate = useNavigate();
     useEffect(() => {
-        if (!location?.state?.outboundFlight) {
+        if (!location?.state?.outboundFlights) {
             navigate("/");
         }
     }, []);
 
     return (
         <>
-            {!location?.state?.outboundFlight ? (
+            {!location?.state?.outboundFlights ? (
                 <></>
             ) : (
                 <>

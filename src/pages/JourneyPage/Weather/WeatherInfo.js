@@ -2,11 +2,11 @@ import { Stack } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import usePageDimensions from "../../../hooks/usePageDimensions";
-import axios from "axios";
 import WeatherInfoHeader from "./WeatherInfoHeader";
 import WeatherInfoTemperature from "./WeatherInfoTemperature";
 import WeatherInfoDescriptionSymbol from "./WeatherInfoDescriptionSymbol";
 import WeatherNoDataAvailable from "./WeatherNoDataAvailable";
+import server from "../../../axiosConfig";
 
 function WeatherInfo() {
     const location = useLocation();
@@ -25,7 +25,7 @@ function WeatherInfo() {
 
     useEffect(() => {
         async function getWeatherAPIData() {
-            const response = await axios.get("http://localhost:8080/weather", {
+            const response = await server.get("/weather", {
                 params: {
                     latitude:
                         location.state.journey.outboundFlight.arrivalAirport

@@ -5,6 +5,7 @@ import usePageDimensions from "../../../hooks/usePageDimensions";
 import CO2InfoContent from "./CO2InfoContent";
 import CO2InfoHeader from "./CO2InfoHeader";
 import axios from "axios";
+import server from "../../../axiosConfig";
 
 function CO2Info() {
     const location = useLocation();
@@ -21,44 +22,38 @@ function CO2Info() {
 
     useEffect(() => {
         async function getCO2DataForOutbound() {
-            const response = await axios.get(
-                "http://localhost:8080/co2-offset",
-                {
-                    params: {
-                        airportCodeFrom:
-                            location.state.journey.outboundFlight
-                                .departureAirport.iataCode,
-                        airportCodeTo:
-                            location.state.journey.outboundFlight.arrivalAirport
-                                .iataCode,
-                        cabinClass: "economy"
-                    },
-                    headers: {
-                        Authorization: sessionStorage.getYourWay_session_token
-                    }
+            const response = await server.get("/co2-offset", {
+                params: {
+                    airportCodeFrom:
+                        location.state.journey.outboundFlight.departureAirport
+                            .iataCode,
+                    airportCodeTo:
+                        location.state.journey.outboundFlight.arrivalAirport
+                            .iataCode,
+                    cabinClass: "economy"
+                },
+                headers: {
+                    Authorization: sessionStorage.getYourWay_session_token
                 }
-            );
+            });
             setOutboundFlightCO2Info(response.data);
         }
 
         async function getCO2DataForReturn() {
-            const response = await axios.get(
-                "http://localhost:8080/co2-offset",
-                {
-                    params: {
-                        airportCodeFrom:
-                            location.state.journey.returnFlight.departureAirport
-                                .iataCode,
-                        airportCodeTo:
-                            location.state.journey.returnFlight.arrivalAirport
-                                .iataCode,
-                        cabinClass: "economy"
-                    },
-                    headers: {
-                        Authorization: sessionStorage.getYourWay_session_token
-                    }
+            const response = await server.get("/co2-offset", {
+                params: {
+                    airportCodeFrom:
+                        location.state.journey.returnFlight.departureAirport
+                            .iataCode,
+                    airportCodeTo:
+                        location.state.journey.returnFlight.arrivalAirport
+                            .iataCode,
+                    cabinClass: "economy"
+                },
+                headers: {
+                    Authorization: sessionStorage.getYourWay_session_token
                 }
-            );
+            });
             setReturnFlightCO2Info(response.data);
         }
 

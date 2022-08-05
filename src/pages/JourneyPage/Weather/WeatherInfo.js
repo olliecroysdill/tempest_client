@@ -42,24 +42,24 @@ function WeatherInfo() {
                     Authorization: sessionStorage.getYourWay_session_token
                 }
             });
-            console.log(response.data[0]);
-            if (typeof response.data[0] == "undefined") {
-                // Todo: please fix
-                setWeatherInfo({
-                    dayOfYearIso: "2022-08-08T20:00:00Z",
-                    temperatureValues: {
-                        minTemperature: 16.7,
-                        maxTemperature: 21.2,
-                        avgTemperature: 19.0
-                    },
-                    weatherSymbol: {
-                        weatherSymbolCode: 17,
-                        weatherSymbolDescription: "Clear sky"
-                    }
-                });
-            } else {
-                setWeatherInfo(response.data[0]);
-            }
+            // console.log(response.data[0]);
+            // if (typeof response.data[0] == "undefined") {
+            //     // Todo: please fix
+            //     setWeatherInfo({
+            //         dayOfYearIso: "2022-08-08T20:00:00Z",
+            //         temperatureValues: {
+            //             minTemperature: 16.7,
+            //             maxTemperature: 21.2,
+            //             avgTemperature: 19.0
+            //         },
+            //         weatherSymbol: {
+            //             weatherSymbolCode: 17,
+            //             weatherSymbolDescription: "Clear sky"
+            //         }
+            //     });
+            // } else {
+            setWeatherInfo(response.data[0]);
+            // }
         }
 
         async function getWeatherData() {
@@ -86,45 +86,54 @@ function WeatherInfo() {
                 {/* {moment(weatherInfo.dayOfYearIso).isBefore(
                     moment().add(15, "days")
                 ) ? ( */}
-                {/* {typeof weatherInfo !== "undefined" ? ( */}
-                <Stack
-                    padding={2}
-                    direction={pageDimensions.width > 800 ? "row" : "column"}
-                    width="100%"
-                    spacing={pageDimensions.width > 800 ? 5 : 2}
-                    alignItems="center"
-                >
-                    <WeatherInfoDescriptionSymbol
-                        title="DESCRIPTION"
-                        weatherSymbolCode={
-                            weatherInfo.weatherSymbol.weatherSymbolCode
+                {typeof weatherInfo !== "undefined" ? (
+                    <Stack
+                        padding={2}
+                        direction={
+                            pageDimensions.width > 800 ? "row" : "column"
                         }
-                        weatherSymbolDescription={
-                            weatherInfo.weatherSymbol.weatherSymbolDescription
-                        }
-                    />
-                    {pageDimensions.width > 800 && (
-                        <Stack
-                            width={"2px"}
-                            sx={{ backgroundColor: "#ddd" }}
-                            height="80px"
-                        ></Stack>
-                    )}{" "}
-                    <WeatherInfoTemperature
-                        title="TEMPERATURES"
-                        maxTemp={weatherInfo.temperatureValues.maxTemperature}
-                        minTemp={weatherInfo.temperatureValues.minTemperature}
-                        avgTemp={weatherInfo.temperatureValues.avgTemperature}
-                    />
-                </Stack>
-                {/* ) : (
+                        width="100%"
+                        spacing={pageDimensions.width > 800 ? 5 : 2}
+                        alignItems="center"
+                    >
+                        <WeatherInfoDescriptionSymbol
+                            title="DESCRIPTION"
+                            weatherSymbolCode={
+                                weatherInfo.weatherSymbol.weatherSymbolCode
+                            }
+                            weatherSymbolDescription={
+                                weatherInfo.weatherSymbol
+                                    .weatherSymbolDescription
+                            }
+                        />
+                        {pageDimensions.width > 800 && (
+                            <Stack
+                                width={"2px"}
+                                sx={{ backgroundColor: "#ddd" }}
+                                height="80px"
+                            ></Stack>
+                        )}{" "}
+                        <WeatherInfoTemperature
+                            title="TEMPERATURES"
+                            maxTemp={
+                                weatherInfo.temperatureValues.maxTemperature
+                            }
+                            minTemp={
+                                weatherInfo.temperatureValues.minTemperature
+                            }
+                            avgTemp={
+                                weatherInfo.temperatureValues.avgTemperature
+                            }
+                        />
+                    </Stack>
+                ) : (
                     <>
                         <WeatherNoDataAvailable
                             title="No data available at this point in time."
                             weatherSymbolCode={17}
                         />
                     </>
-                )} */}
+                )}
             </Stack>
         </>
     );

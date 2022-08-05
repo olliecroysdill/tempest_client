@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import CO2InfoContent from "./CO2InfoContent";
 import CO2InfoHeader from "./CO2InfoHeader";
-import axios from "axios";
 import server from "../../../axiosConfig";
 
 function CO2Info() {

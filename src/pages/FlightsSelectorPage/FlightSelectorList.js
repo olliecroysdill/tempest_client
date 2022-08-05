@@ -89,9 +89,8 @@ function FlightSelectorList() {
                     <Stack
                         direction="row"
                         spacing={3}
-                        justifyContent="flex-start"
                         width="100%"
-                        alignItems="center"
+                        justifyContent="center"
                     >
                         <Grid
                             item

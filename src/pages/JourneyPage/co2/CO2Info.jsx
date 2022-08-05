@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import CO2InfoContent from "./CO2InfoContent";
 import CO2InfoHeader from "./CO2InfoHeader";

@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import Navigation from "../../Components/Navigation/Navigation";
 import useRestrictToLoginOnly from "../../hooks/useRestrictToLoginOnly";

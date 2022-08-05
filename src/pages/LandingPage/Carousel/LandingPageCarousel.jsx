@@ -5,6 +5,7 @@ import CarouselItemMobile from "./CarouselItem/CarouselItemMobile";
 import LandingPageCarouselContainer from "./LandingPageCarouselContainer";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import { filmDataArray } from "./CarouselFilmData";
+import landingPageImg from "../../../assets/LandingPageV1.png";
 
 function LandingPageCarousel() {
     const pageDimensions = usePageDimensions();
@@ -16,34 +17,37 @@ function LandingPageCarousel() {
     return (
         <Stack alignItems="center" width="100%" height="calc(100vh - 60px)">
             <LandingPageCarouselContainer>
-                {transformedFilmDataArray.map((filmArray, index) => (
-                    <Stack
-                        direction="row"
-                        alignItems="center"
-                        key={`filmPage_${index}`}
-                    >
-                        {filmArray.map((filmData, index) => {
-                            if (numberOfFilmsPerScreen >= 3)
-                                return (
-                                    <CarouselItem
-                                        title={filmData.title}
-                                        location={filmData.location}
-                                        image={filmData.image}
-                                        key={`filmItem_${index}`}
-                                    />
-                                );
-                            else
-                                return (
-                                    <CarouselItemMobile
-                                        title={filmData.title}
-                                        location={filmData.location}
-                                        image={filmData.image}
-                                        key={`filmItem_${index}`}
-                                    />
-                                );
-                        })}
-                    </Stack>
-                ))}
+                {[
+                    <img src={landingPageImg} width="100%" alt="landingPage" />,
+                    ...transformedFilmDataArray.map((filmArray, index) => (
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            key={`filmPage_${index}`}
+                        >
+                            {filmArray.map((filmData, index) => {
+                                if (numberOfFilmsPerScreen >= 3)
+                                    return (
+                                        <CarouselItem
+                                            title={filmData.title}
+                                            location={filmData.location}
+                                            image={filmData.image}
+                                            key={`filmItem_${index}`}
+                                        />
+                                    );
+                                else
+                                    return (
+                                        <CarouselItemMobile
+                                            title={filmData.title}
+                                            location={filmData.location}
+                                            image={filmData.image}
+                                            key={`filmItem_${index}`}
+                                        />
+                                    );
+                            })}
+                        </Stack>
+                    ))
+                ]}
             </LandingPageCarouselContainer>
         </Stack>
     );

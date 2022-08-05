@@ -18,7 +18,17 @@ function LandingPageCarousel() {
         <Stack alignItems="center" width="100%" height="calc(100vh - 60px)">
             <LandingPageCarouselContainer>
                 {[
-                    <img src={landingPageImg} width="100%" alt="landingPage" />,
+                    <Stack
+                        width="100%"
+                        overflow="hidden"
+                        height="calc(100vh - 60px)"
+                    >
+                        <img
+                            src={landingPageImg}
+                            width="100%"
+                            alt="landingPage"
+                        />
+                    </Stack>,
                     ...transformedFilmDataArray.map((filmArray, index) => (
                         <Stack
                             direction="row"

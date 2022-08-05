@@ -14,7 +14,7 @@ export const useStyles = makeStyles(() =>
 function convertToHours(duration) {
     var hours = Math.floor(duration / 3600);
     var minutes = Math.floor((duration % 3600) / 60);
-    return hours + "h " + minutes;
+    return hours + "h " + String(minutes).padStart(2, "0");
 }
 
 function FlightDurationContent(props) {

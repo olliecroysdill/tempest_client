@@ -11,7 +11,6 @@ import server from "../../axiosConfig";
 
 function DashboardPage() {
     useRestrictToLoginOnly();
-
     useEffect(() => {
         async function getSavedFlights() {
             const response = await server.get("/journeys/getjourneys", {
@@ -25,7 +24,6 @@ function DashboardPage() {
             getSavedFlights();
         }
     }, []);
-
     const pageDimensions = usePageDimensions();
     const [showUpcoming, setShowUpcoming] = React.useState(true);
 

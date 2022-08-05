@@ -5,7 +5,7 @@ import CarouselItemMobile from "./CarouselItem/CarouselItemMobile";
 import LandingPageCarouselContainer from "./LandingPageCarouselContainer";
 import usePageDimensions from "../../../hooks/usePageDimensions";
 import { filmDataArray } from "./CarouselFilmData";
-import landingPageImg from "../../../assets/LandingPageV1.png";
+import landingPageImg from "../../../assets/LandingImage.png";
 
 function LandingPageCarousel() {
     const pageDimensions = usePageDimensions();
@@ -22,10 +22,13 @@ function LandingPageCarousel() {
                         width="100%"
                         overflow="hidden"
                         height="calc(100vh - 60px)"
+                        justifyContent="center"
+                        alignItems="center"
+                        paddingTop="40px"
                     >
                         <img
                             src={landingPageImg}
-                            width="100%"
+                            width="102%"
                             alt="landingPage"
                         />
                     </Stack>,

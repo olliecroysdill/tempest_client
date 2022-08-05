@@ -23,7 +23,7 @@ function FlightInfoHeader(props) {
                     variant="h5"
                     color={props.selected === "outbound" ? "#fff" : "#666"}
                 >
-                    OUTBOUND
+                    OUTBOUND FLIGHT
                 </Typography>
             </Button>
             <Button
@@ -44,7 +44,7 @@ function FlightInfoHeader(props) {
                     variant="h5"
                     color={props.selected === "return" ? "#fff" : "#666"}
                 >
-                    RETURN
+                    RETURN FLIGHT
                 </Typography>
             </Button>
         </Stack>

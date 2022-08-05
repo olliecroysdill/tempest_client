@@ -1,10 +1,12 @@
 import { Stack } from "@mui/material";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import FlightInfoContent from "./FlightInfoContent";
 import FlightInfoHeader from "./FlightInfoHeader";
 
 function FlightInfo() {
-    const [fligtSelected, setFlightSelected] = useState("outbound");
+    const [flightSelected, setFlightSelected] = useState("outbound");
+    const location = useLocation();
 
     return (
         <Stack
@@ -19,9 +21,15 @@ function FlightInfo() {
                 setSelected={(newSelected) => {
                     setFlightSelected(newSelected);
                 }}
-                selected={fligtSelected}
+                selected={flightSelected}
             />
-            <FlightInfoContent />
+            <FlightInfoContent
+                flight={
+                    flightSelected === "outbound"
+                        ? location.state.journey.outboundFlight
+                        : location.state.journey.returnFlight
+                }
+            />
         </Stack>
     );
 }

@@ -18,7 +18,7 @@ function JourneyPage() {
                     {location.state.journey.journeyName}
                 </Typography>
                 <FlightInfo />
-                <WeatherInfo />
+                {/* <WeatherInfo /> */}
                 <CO2Info />
             </Stack>
         </Stack>

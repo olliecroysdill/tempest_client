@@ -23,7 +23,7 @@ function WeatherInfoHeader() {
                 paddingBottom={1}
             >
                 <Typography variant="h5" color="#666">
-                    WEATHER INFO
+                    DESTINATION WEATHER INFO
                 </Typography>
             </Stack>
         </Stack>
